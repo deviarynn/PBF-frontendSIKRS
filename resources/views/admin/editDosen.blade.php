@@ -111,7 +111,7 @@
                         <h2 class="text-lg font-bold text-center">Edit Data Dosen</h2>
                         <div class="bg-white p-4 rounded-lg mt-4">
                             <label class="block text-black font-semibold">NIP</label>
-                            <input type="text" placeholder="masukan npm..." class="w-full border border-gray-400 rounded p-2 mt-1">
+                            <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
     
                             <label class="block text-black font-semibold">Nama Dosen</label>
                             <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">

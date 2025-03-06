@@ -115,7 +115,7 @@
                         <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
                         <hr><br>
                         <div class="flex justify-between">
-                            <a href="/admin/dataMhs" class="px-4 py-2 bg-red-800 text-white rounded">Batal</a>
+                            <a href="/admin/dataProdi" class="px-4 py-2 bg-red-800 text-white rounded">Batal</a>
                             <button type="submit" class="px-4 py-2 bg-blue-800 text-white rounded">Ubah</button>
                         </div>
                     </div>
