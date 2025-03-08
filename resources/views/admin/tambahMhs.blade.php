@@ -62,12 +62,11 @@
             <ul class="mt-5">
                 <li class="py-2"><a href="/admin/dashboard " class="block">Dashboard</a></li>
                 <li class="py-2 relative">
-                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>🔽</span></button>
+                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>▼</span></button>
                     <ul id="dropdownMenu" class="hidden bg-gray-600 mt-2 rounded" onclick="keepDropdownOpen(event)">
                         <li id="menuMahasiswa" class="py-2 px-4 hover:bg-gray-500">
                             <a href="/admin/dataMhs" onclick="openDataMahasiswa()">Data Mahasiswa</a>
                         </li>
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataDosen">Data Dosen</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataProdi">Data Prodi</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataMatkul">Data Matkul</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataKelas">Data Kelas</a></li>
@@ -76,7 +75,7 @@
                 </li>
                 <li class="py-2 text-red-600 flex justify-between items-center">
                     <a href="#" onclick="confirmLogout()" class="block flex justify-between items-center w-full">
-                        Log Out <span>🚪</span>
+                        Log Out <span>🔐</span>
                     </a>
                 </li>
             </ul>
@@ -108,19 +107,19 @@
             <!-- Main Content -->
         <main class="flex-1 p-6">
             <div class="flex justify-center items-center h-full">
-                <div class="bg-gray-900 text-black w-96 rounded-lg shadow-lg p-6">
+                <div class="bg-gray-900 text-white w-96 rounded-lg shadow-lg p-6">
                     <h2 class="text-lg font-bold text-center">Tambah Data Mahasiswa</h2>
-                    <div class="bg-white p-4 rounded-lg mt-4">
-                        <label class="block text-black font-semibold">NPM</label>
+                    <div class="bg-white p-4 rounded-lg mt-4 text-black">
+                        <label class="block font-semibold">NPM</label>
                         <input type="text" placeholder="masukan npm..." class="w-full border border-gray-400 rounded p-2 mt-1">
 
-                        <label class="block text-black font-semibold">Nama</label>
+                        <label class="block font-semibold">Nama</label>
                         <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
 
-                        <label class="block text-black font-semibold">Kelas</label>
+                        <label class="block font-semibold">Kelas</label>
                         <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
 
-                        <label class="block text-black font-semibold">Prodi</label>
+                        <label class="block font-semibold">Prodi</label>
                         <input type="text" placeholder="pilih prodi" class="w-full border border-gray-400 rounded p-2 mt-1">
 
                         <div class="flex justify-center mt-4">

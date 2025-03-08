@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataProdiController;
+use App\Http\Controllers\DataKelasController;
+use App\Http\Controllers\DataMatkulController;
+use App\Http\Controllers\DataMahasiswaController;
+use App\Http\Controllers\DataKRSController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +36,10 @@ Route::get('/admin/dashboard', function () {
 })->name('admin.dashboard');
 
 // data mahasiswa
-Route::get('/admin/dataMhs', function () {
-    return view('admin.dataMhs');
-})->name('admin.dataMhs');
+// Route::get('/admin/dataMhs', function () {
+//     return view('admin.dataMhs');
+// })->name('admin.dataMhs');
+Route::get('/admin/dataMhs', [DataMahasiswaController::class, 'index']);
 
 Route::get('/admin/tambahMhs', function () {
     return view('admin.tambahMhs');
@@ -41,24 +49,10 @@ Route::get('/admin/editMhs', function () {
     return view('admin.editMhs');
 })->name('admin.editMhs');
 
-// data dosen
-Route::get('/admin/dataDosen', function () {
-    return view('admin.dataDosen');
-})->name('admin.dataDosen');
-
-Route::get('/admin/tambahDosen', function () {
-    return view('admin.tambahDosen');
-})->name('admin.tambahDosen');
-
-Route::get('/admin/editDosen', function () {
-    return view('admin.editDosen');
-})->name('admin.editDosen');
 
 
 //data prodi
-Route::get('/admin/dataProdi', function () {
-    return view('admin.dataProdi');
-})->name('admin.dataProdi');
+Route::get('/admin/dataProdi', [DataProdiController::class, 'index']);
 
 Route::get('/admin/tambahProdi', function () {
     return view('admin.tambahProdi');
@@ -70,9 +64,10 @@ Route::get('/admin/editProdi', function () {
 
 
 //data matkul
-Route::get('/admin/dataMatkul', function () {
-    return view('admin.dataMatkul');
-})->name('admin.dataMatkul');
+// Route::get('/admin/dataMatkul', function () {
+//     return view('admin.dataMatkul');
+// })->name('admin.dataMatkul');
+Route::get('/admin/dataMatkul', [DataMatkulController::class, 'index']);
 
 Route::get('/admin/tambahMatkul', function () {
     return view('admin.tambahMatkul');
@@ -84,9 +79,10 @@ Route::get('/admin/editMatkul', function () {
 
 
 //data kelas
-Route::get('/admin/dataKelas', function () {
-    return view('admin.dataKelas');
-})->name('admin.dataKelas');
+// Route::get('/admin/dataKelas', function () {
+//     return view('admin.dataKelas');
+// })->name('admin.dataKelas');
+Route::get('/admin/dataKelas', [DataKelasController::class, 'index']);
 
 Route::get('/admin/tambahKelas', function () {
     return view('admin.tambahKelas');
@@ -98,9 +94,10 @@ Route::get('/admin/editKelas', function () {
 
 
 //data KRS
-Route::get('/admin/dataKRS', function () {
-    return view('admin.dataKRS');
-})->name('admin.dataKRS');
+// Route::get('/admin/dataKRS', function () {
+//     return view('admin.dataKRS');
+// })->name('admin.dataKRS');
+Route::get('/admin/dataKRS', [DataKRSController::class, 'index']);
 
 
 

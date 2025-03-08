@@ -62,10 +62,9 @@
             <ul class="mt-5">
                 <li class="py-2"><a href="/admin/dashboard " class="block">Dashboard</a></li>
                 <li class="py-2 relative">
-                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>🔽</span></button>                    
+                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>▼</span></button>                    
                     <ul id="dropdownMenu" class="hidden bg-gray-600 mt-2 rounded" onclick="keepDropdownOpen(event)">
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataMhs">Data Mahasiswa</a></li>
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataDosen">Data Dosen</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataProdi">Data Prodi</a></li>
                         <li id="menuMatkul" class="py-2 px-4 hover:bg-gray-500">
                             <a href="/admin/dataMatkul" onclick="openDataMatkul()">Data Matkul</a>
@@ -76,7 +75,7 @@
                 </li>
                 <li class="py-2 text-red-600 flex justify-between items-center">
                     <a href="#" onclick="confirmLogout()" class="block flex justify-between items-center w-full">
-                        Log Out <span>🚪</span>
+                        Log Out <span>🔐</span>
                     </a>
                 </li>
             </ul>
@@ -107,7 +106,7 @@
 
             <main class="p-6">
                 <!-- Selamat Datang Admin -->
-                <div class="bg-green-600 text-white p-3 text-center rounded mb-4 shadow-md w-full">
+                <div class="bg-cyan-700 text-white p-3 text-center rounded mb-4 shadow-md w-full">
                     <h2 class="text-2xl font-bold">DATA MATKUL POLITEKNIK NEGERI CILACAP</h2>
                 </div>
                 <hr><br>
@@ -117,31 +116,33 @@
                     <div class="flex justify-between items-center mt-4">
                         <a href="/admin/tambahMatkul" class="bg-green-900 text-white px-4 py-2 rounded">
                             Tambah
-                        </a>                        <input type="text" placeholder="cari matkul..." class="border p-2 rounded">
+                        </a>                        
+                        <input type="text" placeholder="cari matkul..." class="border p-2 rounded">
                     </div>
                     <table class="w-full mt-4 border-collapse border border-gray-300 text-center">
                         <thead>
                             <tr class="bg-gray-200">
-                                <th class="border p-2">ID Matkul</th>
+                                <th class="border p-2">Kode Matkul</th>
                                 <th class="border p-2">Matkul</th>
-                                <th class="border p-2">NIP</th>
                                 <th class="border p-2">SKS</th>
                                 <th class="border p-2">Semester</th>
                                 <th class="border p-2">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($matkul as $m)                                
                             <tr class="text-center">
-                                <th class="border p-2">1</th>
-                                <td class="border p-2">PBF</td>
-                                <th class="border p-2">2323567</th>
-                                <th class="border p-2">8</th>
-                                <th class="border p-2">4</th>
-                                <td class="border p-2">
-                                    <a href="/admin/editMatkul" class="text-blue-500">✏</a>
-                                    <a href="#" class="text-red-500">🗑</a>
+                                <td class="border border-gray-400 px-4 py-2">{{ $m['kode_matkul'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $m['nama_matkul'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $m['sks'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $m['semester'] }}</td>                                
+                                <td class="border border-gray-400 px-4 py-2 text-center">
+                                    <a href="/admin/editMatkul/{{ $m['kode_matkul'] }}" class="text-blue-500">✏</a>
+                                    <a href="/admin/deleteMatkul/{{ $m['kode_matkul'] }}" class="text-red-500 ml-2">🗑</a>
                                 </td>
                             </tr>
+                            
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

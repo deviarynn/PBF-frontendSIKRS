@@ -24,16 +24,16 @@
                 <li class="py-2"><a href="#" class="block">Dashboard</a></li>
                 <li class="py-2 relative">
                     <button onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">
-                        Menu <span>🔽</span>
+                        Menu <span>▼</span>
                     </button>                    
                     <ul id="dropdownMenu" class="hidden bg-gray-600 mt-2 rounded">
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/mahasiswa/dataMatkul">Data Matkul</a></li>
+                        {{-- <li class="py-2 px-4 hover:bg-gray-500"><a href="/mahasiswa/dataMatkul">Data Matkul</a></li> --}}
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/mahasiswa/dataKRS">Isi KRS</a></li>
                     </ul>
                 </li>
                 <li class="py-2 text-red-600 flex justify-between items-center">
                     <a href="#" onclick="confirmLogout()" class="block flex justify-between items-center w-full">
-                        Log Out <span>🚪</span>
+                        Log Out <span>🔐</span>
                     </a>
                 </li>
             </ul>
@@ -65,7 +65,7 @@
 
             <main class="p-6">
                 <!-- Selamat Datang Admin -->
-                <div class="bg-green-600 text-white p-3 text-center rounded mb-4  shadow-md w-full">
+                <div class="bg-cyan-700 text-white p-3 text-center rounded mb-4  shadow-md w-full">
                 <h2 class="text-2xl font-bold">SELAMAT DATANG, MAHASISWA !</h2>
                 </div><hr><br>
                 
@@ -76,7 +76,7 @@
                     <p class="text-lg">Silahkan isi KRS anda!</p>
 
                     <div class="mt-4 flex justify-center space-x-4">
-                        <a href="/mahasiswa/dataMatkul" class="text-blue-600 hover:underline">Lihat Data Matkul</a>
+                        {{-- <a href="/mahasiswa/dataMatkul" class="text-blue-600 hover:underline">Lihat Data Matkul</a> --}}
                         <a href="/mahasiswa/dataKRS" class="text-blue-600 hover:underline">Isi KRS</a>
                     </div>
                 </div>

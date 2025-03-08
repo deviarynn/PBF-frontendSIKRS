@@ -75,17 +75,16 @@
             <ul class="mt-5">
                 <li class="py-2"><a href="/mahasiswa/dashboard " class="block">Dashboard</a></li>
                 <li class="py-2 relative">
-                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>🔽</span></button>                    
+                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>▼</span></button>                    
                     <ul id="dropdownMenu" class="hidden bg-gray-600 mt-2 rounded" onclick="keepDropdownOpen(event)">
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/mahasiswa/dataMatkul">Data Matkul</a></li>
                         <li id="menuKRS" class="py-2 px-4 hover:bg-gray-500">
                             <a href="/mahasiswa/dataKRS" onclick="openDataKRS()">Data KRS</a>
                         </li>
                     </ul>
                 </li>
-                <li class="py-2 text-red-600 flex justify-between items-center">
+                <li class="py-2 text-white flex justify-between items-center">
                     <a href="#" onclick="confirmLogout()" class="block flex justify-between items-center w-full">
-                        Log Out <span>🚪</span>
+                        Log Out <span>🔐</span>
                     </a>
                 </li>
             </ul>
@@ -110,13 +109,13 @@
                 </div>
                 <div class="flex items-center space-x-3">
                     <img src="{{ asset('image/mhs.png') }}" alt="👨‍💼" class="h-8 w-8 rounded-full">
-                    <span>Admin</span>
+                    <span>Mahasiswa</span>
                 </div>
             </nav>
 
             <main class="p-6">
                 <!-- Selamat Datang Admin -->
-                <div class="bg-green-600 text-white p-3 text-center rounded mb-4 shadow-md w-full">
+                <div class="bg-cyan-700 text-white p-3 text-center rounded mb-4 shadow-md w-full">
                     <h2 class="text-2xl font-bold">KRS MAHASISWA POLITEKNIK NEGERI CILACAP</h2>
                 </div>
                 <hr><br>

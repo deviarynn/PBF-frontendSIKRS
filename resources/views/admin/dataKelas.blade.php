@@ -62,10 +62,9 @@
             <ul class="mt-5">
                 <li class="py-2"><a href="/admin/dashboard " class="block">Dashboard</a></li>
                 <li class="py-2 relative">
-                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>🔽</span></button>                    
+                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>▼</span></button>                    
                     <ul id="dropdownMenu" class="hidden bg-gray-600 mt-2 rounded" onclick="keepDropdownOpen(event)">
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataMhs">Data Mahasiswa</a></li>
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataDosen">Data Dosen</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataProdi">Data Prodi</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataMatkul">Data Matkul</a></li>
                         <li id="menuKelas" class="py-2 px-4 hover:bg-gray-500">
@@ -76,7 +75,7 @@
                 </li>
                 <li class="py-2 text-red-600 flex justify-between items-center">
                     <a href="#" onclick="confirmLogout()" class="block flex justify-between items-center w-full">
-                        Log Out <span>🚪</span>
+                        Log Out <span>🔐</span>
                     </a>
                 </li>
             </ul>
@@ -107,7 +106,7 @@
 
             <main class="p-6">
                 <!-- Selamat Datang Admin -->
-                <div class="bg-green-600 text-white p-3 text-center rounded mb-4 shadow-md w-full">
+                <div class="bg-cyan-700 text-white p-3 text-center rounded mb-4 shadow-md w-full">
                     <h2 class="text-2xl font-bold">DATA KELAS POLITEKNIK NEGERI CILACAP</h2>
                 </div>
                 <hr><br>
@@ -117,7 +116,8 @@
                     <div class="flex justify-between items-center mt-4">
                         <a href="/admin/tambahKelas" class="bg-green-900 text-white px-4 py-2 rounded">
                             Tambah
-                        </a>                        <input type="text" placeholder="cari kelas..." class="border p-2 rounded">
+                        </a>                        
+                        <input type="text" placeholder="cari kelas..." class="border p-2 rounded">
                     </div>
                     <table class="w-full mt-4 border-collapse border border-gray-300 text-center">
                         <thead>
@@ -128,14 +128,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($kelas as $k)                                
                             <tr class="text-center">
-                                <th class="border p-2">1</th>
-                                <td class="border p-2">TI 2C</td>
-                                <td class="border p-2">
-                                    <a href="/admin/editKelas" class="text-blue-500">✏</a>
-                                    <a href="#" class="text-red-500">🗑</a>
+                                <td class="border border-gray-400 px-4 py-2">{{ $k['id_kelas'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $k['nama_kelas'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2 text-center">
+                                    <a href="/admin/editKelas/{{ $k['id_kelas'] }}" class="text-blue-500">✏</a>
+                                    <a href="/admin/deleteKelas/{{ $k['id_kelas'] }}" class="text-red-500 ml-2">🗑</a>
                                 </td>
                             </tr>
+                            
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

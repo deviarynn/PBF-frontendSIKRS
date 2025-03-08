@@ -62,12 +62,11 @@
             <ul class="mt-5">
                 <li class="py-2"><a href="/admin/dashboard " class="block">Dashboard</a></li>
                 <li class="py-2 relative">
-                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>🔽</span></button>
+                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>▼</span></button>
                     <ul id="dropdownMenu" class="hidden bg-gray-600 mt-2 rounded" onclick="keepDropdownOpen(event)">
                         <li id="menuMahasiswa" class="py-2 px-4 hover:bg-gray-500">
                             <a href="/admin/dataMhs" onclick="openDataMahasiswa()">Data Mahasiswa</a>
                         </li>
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataDosen">Data Dosen</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataProdi">Data Prodi</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataMatkul">Data Matkul</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataKelas">Data Kelas</a></li>
@@ -76,7 +75,7 @@
                 </li>
                 <li class="py-2 text-red-600 flex justify-between items-center">
                     <a href="#" onclick="confirmLogout()" class="block flex justify-between items-center w-full">
-                        Log Out <span>🚪</span>
+                        Log Out <span>🔐</span>
                     </a>
                 </li>
             </ul>
@@ -107,7 +106,7 @@
 
             <main class="p-6">
                 <!-- Selamat Datang Admin -->
-                <div class="bg-green-600 text-white p-3 text-center rounded mb-4 shadow-md w-full">
+                <div class="bg-cyan-700 text-white p-3 text-center rounded mb-4 shadow-md w-full">
                     <h2 class="text-2xl font-bold">DATA MAHASISWA SEMESTER 4</h2>
                 </div>
                 <hr><br>
@@ -127,26 +126,27 @@
                                 <th class="border p-2">No.</th>
                                 <th class="border p-2">NPM</th>
                                 <th class="border p-2">Nama Mahasiswa</th>
-                                <th class="border p-2">Kelas</th>
-                                <th class="border p-2">Prodi</th>
+                                <th class="border p-2">ID Kelas</th>
+                                <th class="border p-2">Kode Prodi</th>
                                 <th class="border p-2">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($mahasiswa as $mhs)                                
                             <tr class="text-center">
-                                <th class="border p-2">1.</th>
-                                <td class="border p-2">230102057</td>
-                                <td class="border p-2">Devi Aryani</td>
-                                <td class="border p-2">TI 2C</td>
-                                <td class="border p-2">TI</td>
-                                <td class="border p-2">
-                                    <a href="/admin/editMhs" class="text-blue-500">✏</a>
-                                    <a href="#" class="text-red-500">🗑</a>
-                                </td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $mhs['npm'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $mhs['nama_mahasiswa'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $mhs['id_kelas'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $mhs['kode_prodi'] }}</td>                                <td class="border p-2">
+                                    <td class="border p-2">
+                                        <a href="/admin/editMhs/{{ $mhs['npm'] }}" class="text-blue-500">✏</a>
+                                        <a href="/admin/deleteProdi/{{ $mhs['npm'] }}" class="text-red-500">🗑</a>
+                                    </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                </div>
+                </div>                            
             </main>
         </div>
     </div>

@@ -24,11 +24,10 @@
                 <li class="py-2"><a href="#" class="block">Dashboard</a></li>
                 <li class="py-2 relative">
                     <button onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">
-                        Menu <span>🔽</span>
+                        Menu <span>▼</span>
                     </button>                    
                     <ul id="dropdownMenu" class="hidden bg-gray-600 mt-2 rounded">
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataMhs">Data Mahasiswa</a></li>
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataDosen">Data Dosen</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataProdi">Data Prodi</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataMatkul">Data Matkul</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataKelas">Data Kelas</a></li>
@@ -37,7 +36,7 @@
                 </li>
                 <li class="py-2 text-red-600 flex justify-between items-center">
                     <a href="#" onclick="confirmLogout()" class="block flex justify-between items-center w-full">
-                        Log Out <span>🚪</span>
+                        Log Out <span>🔐</span>
                     </a>
                 </li>
             </ul>
@@ -68,7 +67,7 @@
 
             <main class="p-6">
                 <!-- Selamat Datang Admin -->
-                <div class="bg-green-600 text-white p-3 text-center rounded mb-4  shadow-md w-full">
+                <div class="bg-cyan-700 text-white p-3 text-center rounded mb-4  shadow-md w-full">
                 <h2 class="text-2xl font-bold">SELAMAT DATANG, ADMIN !</h2>
                 </div><hr><br>
                 <div class="flex justify-center items-center h-full">
@@ -77,42 +76,35 @@
                         <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
                             <p class="font-semibold">Data Mahasiswa</p>
                             <p class="text-3xl mb-1">🎓</p>
-                            <p class="text-gray-500">2084</p>
+                            <p class="text-gray-500">5</p>
                         </div>
-                
-                        <!-- Data Dosen -->
-                        <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
-                            <p class="font-semibold">Data Dosen</p>
-                            <p class="text-3xl mb-1">👨‍🏫</p>
-                            <p class="text-gray-500">2084</p>
-                        </div>
-                
+    
                         <!-- Data Matkul -->
                         <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
                             <p class="font-semibold">Data Matkul</p>
                             <p class="text-3xl mb-1">📚</p>
-                            <p class="text-gray-500">2084</p>
+                            <p class="text-gray-500">5</p>
                         </div>
                 
                         <!-- Data Prodi -->
                         <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
                             <p class="font-semibold">Data Prodi</p>
                             <p class="text-3xl mb-1">🏫</p>
-                            <p class="text-gray-500">2084</p>
+                            <p class="text-gray-500">6</p>
                         </div>
                 
                         <!-- Data Kelas -->
                         <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
                             <p class="font-semibold">Data Kelas</p>
                             <p class="text-3xl mb-1">🏠</p>
-                            <p class="text-gray-500">2084</p>
+                            <p class="text-gray-500">5</p>
                         </div>
                 
                         <!-- Data KRS -->
                         <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
                             <p class="font-semibold">Data KRS</p>
                             <p class="text-3xl mb-1">📝</p>
-                            <p class="text-gray-500">2084</p>
+                            <p class="text-gray-500">7</p>
                         </div>
                     </div>
                 </div>                

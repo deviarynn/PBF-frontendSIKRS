@@ -62,10 +62,9 @@
             <ul class="mt-5">
                 <li class="py-2"><a href="/admin/dashboard " class="block">Dashboard</a></li>
                 <li class="py-2 relative">
-                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>🔽</span></button>                    
+                    <button id="menuButton" onclick="toggleDropdown()" class="block w-full text-left flex justify-between items-center">Menu <span>▼</span></button>                    
                     <ul id="dropdownMenu" class="hidden bg-gray-600 mt-2 rounded" onclick="keepDropdownOpen(event)">
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataMhs">Data Mahasiswa</a></li>
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataDosen">Data Dosen</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataProdi">Data Prodi</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataMatkul">Data Matkul</a></li>
                         <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataKelas">Data Kelas</a></li>
@@ -76,7 +75,7 @@
                 </li>
                 <li class="py-2 text-red-600 flex justify-between items-center">
                     <a href="#" onclick="confirmLogout()" class="block flex justify-between items-center w-full">
-                        Log Out <span>🚪</span>
+                        Log Out <span>🔐</span>
                     </a>
                 </li>
             </ul>
@@ -107,7 +106,7 @@
 
             <main class="p-6">
                 <!-- Selamat Datang Admin -->
-                <div class="bg-green-600 text-white p-3 text-center rounded mb-4 shadow-md w-full">
+                <div class="bg-cyan-700 text-white p-3 text-center rounded mb-4 shadow-md w-full">
                     <h2 class="text-2xl font-bold">DATA KRS MAHASISWA POLITEKNIK NEGERI CILACAP</h2>
                 </div>
                 <hr><br>
@@ -121,28 +120,22 @@
                         <thead>
                             <tr class="bg-gray-200">
                                 <th class="border p-2">No.</th>
-                                <th class="border p-2">Nama</th>
                                 <th class="border p-2">NPM</th>
-                                <th class="border p-2">Kelas</th>
-                                <th class="border p-2">Prodi</th>
-                                <th class="border p-2">Matkul</th>
-                                <th class="border p-2">SKS</th>
-                                <th class="border p-2">Semester</th>
+                                <th class="border p-2">Kode Matkul</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="text-center">
-                                <th class="border p-2">1</th>
-                                <th class="border p-2">Devi Aryani</th>
-                                <th class="border p-2">230102057</th>
-                                <th class="border p-2">TI 2C</th>
-                                <th class="border p-2">Teknik Informatika</th>
-                                <th class="border p-2">PBF</th>
-                                <th class="border p-2">8</th>
-                                <th class="border p-2">2</th>                                
+                            @foreach ($krs as $kr)                                
+                            <tr>
+                                <td class="border border-gray-400 px-4 py-2">{{ $kr['id_krs'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $kr['npm'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $kr['kode_matkul'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2 text-center">
+                                    <a href="/admin/editKrs/{{ $kr['id_krs'] }}" class="text-blue-500">✏</a>
+                                    <a href="/admin/deleteKrs/{{ $kr['id_krs'] }}" class="text-red-500 ml-2">🗑</a>
                                 </td>
-                            </tr>
-                        </tbody>
+                            </tr> 
+                            @endforeach
                     </table>
                 </div>
             </main>
