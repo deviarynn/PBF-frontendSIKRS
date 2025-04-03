@@ -109,20 +109,22 @@
                     <div class="bg-gray-900 text-white w-96 rounded-lg shadow-lg p-6">
                         <h2 class="text-lg font-bold text-center">Edit Data Matkul</h2>
                         <div class="bg-white p-4 rounded-lg mt-4 text-black">
-                            <label class="block font-semibold">Kode Matkul</label>
-                            <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
-    
-                            <label class="block font-semibold">Matkul</label>
-                            <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
-    
-                            <label class="block font-semibold">SKS</label>
-                            <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
-    
-                            <label class="block font-semibold">Semester</label>
-                            <input type="text" placeholder="pilih prodi" class="w-full border border-gray-400 rounded p-2 mt-1">
+                            <form action="{{ url('/admin/update/' . $matkul['kode_matkul']) }}" method="POST">
+                                @csrf
+                                @method('PUT')  
+                            
+                                <label for="nama_matkul" class="block font-semibold">Mata Kuliah:</label>
+                                <input type="text" name="nama_matkul" value="{{ $matkul->nama_matkul }}" class="w-full border border-gray-400 rounded p-2 mt-1" required><br>
+
+                                <label for="sks" class="block font-semibold">SKS:</label>
+                                <input type="text" name="sks" value="{{ $matkul->sks }}" class="w-full border border-gray-400 rounded p-2 mt-1" required><br>
+
+                                <label for="semester" class="block font-semibold">Semester:</label>
+                                <input type="text" name="semester" value="{{ $matkul->semester }}" class="w-full border border-gray-400 rounded p-2 mt-1" required><br>
+
                             <hr><br>
                             <div class="flex justify-between">
-                                <a href="/admin/dataMatkul" class="px-4 py-2 bg-red-800 text-white rounded">Batal</a>
+                                <a href="/admin/editMatkul" class="px-4 py-2 bg-red-800 text-white rounded">Batal</a>
                                 <button type="submit" class="px-4 py-2 bg-blue-800 text-white rounded">Ubah</button>
                             </div>
                         </div>

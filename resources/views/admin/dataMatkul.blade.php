@@ -111,6 +111,13 @@
                 </div>
                 <hr><br>
 
+                @if (Session::has('Succes'))
+                    <div class="pt-3">
+                        <div class="alert alert-succes">
+                            {{ Session::get('Success') }}
+                        </div>
+                    </div>
+                @endif
                 <!-- Main Content -->
                 <div class="bg-white shadow-md rounded p-4 max-w-4xl mx-auto overflow-x-auto">
                     <div class="flex justify-between items-center mt-4">
@@ -137,8 +144,9 @@
                                 <td class="border border-gray-400 px-4 py-2">{{ $m['sks'] }}</td>
                                 <td class="border border-gray-400 px-4 py-2">{{ $m['semester'] }}</td>                                
                                 <td class="border border-gray-400 px-4 py-2 text-center">
-                                    <a href="/admin/editMatkul/{{ $m['kode_matkul'] }}" class="text-blue-500">✏</a>
-                                    <a href="/admin/deleteMatkul/{{ $m['kode_matkul'] }}" class="text-red-500 ml-2">🗑</a>
+                                    <a href="{{ url('/admin/editMatkul/'. $m['kode_matkul']) }}" class="text-blue-500">✏</a>
+                                    <a href="{{ url('admin/editMatkul/' . $m['kode_matkul']) }}" class="text-red-500 ml-2">🗑</a>
+
                                 </td>
                             </tr>
                             

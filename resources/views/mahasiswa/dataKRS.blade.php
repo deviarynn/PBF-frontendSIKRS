@@ -131,35 +131,35 @@
                         <thead>
                             <tr class="bg-gray-200">
                                 <th class="border p-2">No.</th>
-                                <th class="border p-2">Nama</th>
                                 <th class="border p-2">NPM</th>
+                                <th class="border p-2">Nama</th>
                                 <th class="border p-2">Kelas</th>
                                 <th class="border p-2">Prodi</th>
                                 <th class="border p-2">Matkul</th>
                                 <th class="border p-2">SKS</th>
                                 <th class="border p-2">Semester</th>
-                                <th class="border p-2">Aksi</th>
+                                <th class="border p-2">AKSI</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            <tbody id="krsBody">
-                                <!-- Data KRS akan diisi dari sessionStorage -->
-                            </tbody>
-                            {{-- <tr class="text-center">
-                                <th class="border p-2">1</th>
-                                <th class="border p-2">Devi Aryani</th>
-                                <th class="border p-2">230102057</th>
-                                <th class="border p-2">TI 2C</th>
-                                <th class="border p-2">Teknik Informatika</th>
-                                <th class="border p-2">PBF</th>
-                                <th class="border p-2">8</th>
-                                <th class="border p-2">2</th>                                
-                                <td class="border p-2">
-                                    <a href="/mahasiswa/editKRS" class="text-blue-500">✏</a>
-                                    <a href="#" class="text-red-500">🗑</a>
+                            @foreach ($krs as $kr)                                
+                            <tr>
+                                <td class="border border-gray-400 px-4 py-2">{{ $kr['id_krs'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $kr['npm'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $kr['nama_mahasiswa'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $kr['nama_kelas'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $kr['nama_prodi'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $kr['nama_matkul'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $kr['sks'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $kr['semester'] }}</td>
+
+                                <td class="border border-gray-400 px-4 py-2 text-center">
+                                    <a href="/admin/editKrs/{{ $kr['id_krs'] }}" class="text-blue-500">✏</a>
+                                    <a href="/admin/deleteKrs/{{ $kr['id_krs'] }}" class="text-red-500 ml-2">🗑</a>
                                 </td>
-                            </tr> --}}
-                        </tbody>
+                            </tr> 
+                            @endforeach
                     </table>
                     <!-- Tombol Unduh KRS -->
                 <div class="text-right mt-4">

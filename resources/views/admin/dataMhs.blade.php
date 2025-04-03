@@ -136,8 +136,8 @@
                             <tr class="text-center">
                                 <td class="border border-gray-400 px-4 py-2">{{ $mhs['npm'] }}</td>
                                 <td class="border border-gray-400 px-4 py-2">{{ $mhs['nama_mahasiswa'] }}</td>
-                                <td class="border border-gray-400 px-4 py-2">{{ $mhs['id_kelas'] }}</td>
-                                <td class="border border-gray-400 px-4 py-2">{{ $mhs['kode_prodi'] }}</td>                                <td class="border p-2">
+                                <td class="border border-gray-400 px-4 py-2">{{ $mhs['nama_kelas'] }}</td>
+                                <td class="border border-gray-400 px-4 py-2">{{ $mhs['nama_prodi'] }}</td>                                <td class="border p-2">
                                     <td class="border p-2">
                                         <a href="/admin/editMhs/{{ $mhs['npm'] }}" class="text-blue-500">✏</a>
                                         <a href="/admin/deleteProdi/{{ $mhs['npm'] }}" class="text-red-500">🗑</a>

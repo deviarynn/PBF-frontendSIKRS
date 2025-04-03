@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardAdmin;
+use App\Http\Controllers\DashboardMahasiswa;
 use App\Http\Controllers\DataProdiController;
 use App\Http\Controllers\DataKelasController;
 use App\Http\Controllers\DataMatkulController;
@@ -27,18 +30,41 @@ Route::get('/', function () {
 
 
 // Role admin
-Route::get('/admin/login', function () {
-    return view('admin.login');
-})->name('admin.login');
+// Route::get('/admin/login', function () {
+//     return view('admin.login');
+// })->name('admin.login');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
+Route::get('/admin/login', [AuthController::class, 'showAdminLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AuthController::class, 'loginAdmin']);
+
+Route::get('/mahasiswa/login', [AuthController::class, 'showMahasiswaLoginForm'])->name('mahasiswa.login');
+Route::post('/mahasiswa/login', [AuthController::class, 'loginMahasiswa']);
+
+// Route::post('/admin/login', [AuthController::class, 'loginAdmin'])->name('admin.login');
+// Route::post('/mahasiswa/login', [AuthController::class, 'loginMahasiswa'])->name('mahasiswa.login');
+
+// Route ke halaman login Admin
+// Route::get('/admin/login', function () {
+//     return view('admin.login'); // Sesuaikan dengan path blade login admin
+// })->name('admin.login');
+
+// Route ke halaman login Mahasiswa
+// Route::get('/mahasiswa/login', function () {
+//     return view('mahasiswa.login'); // Sesuaikan dengan path blade login mahasiswa
+// })->name('mahasiswa.login');
+
+Route::get('/admin/dashboard', [DashboardAdmin::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/mahasiswa/dashboard', [DashboardMahasiswa::class, 'dashboard'])->name('mahasiswa.dashboard');
+
+// Route::get('/admin/dashboard', function () {
+//     return view('admin.dashboard');
+// })->name('admin.dashboard');
 
 // data mahasiswa
 // Route::get('/admin/dataMhs', function () {
 //     return view('admin.dataMhs');
 // })->name('admin.dataMhs');
+
 Route::get('/admin/dataMhs', [DataMahasiswaController::class, 'index']);
 
 Route::get('/admin/tambahMhs', function () {
@@ -69,13 +95,13 @@ Route::get('/admin/editProdi', function () {
 // })->name('admin.dataMatkul');
 Route::get('/admin/dataMatkul', [DataMatkulController::class, 'index']);
 
-Route::get('/admin/tambahMatkul', function () {
-    return view('admin.tambahMatkul');
-})->name('admin.tambahMatkul');
+Route::get('/admin/tambahMatkul', [DataMatkulController::class, 'create']);
+Route::post('/admin/dataMatkul/store', [DataMatkulController::class, 'store'])->name('matkul.store');
 
-Route::get('/admin/editMatkul', function () {
-    return view('admin.editMatkul');
-})->name('admin.editMatkul');
+Route::get('/admin/edit/{kode_matkul}', [DataMatkulController::class, 'edit']);
+Route::put('/admin/update/{kode_matkul}', [DataMatkulController::class, 'update']);
+
+Route::delete('/admin/hapusMatkul/{kode_matkul}', [DataMatkulController::class, 'destroy']);
 
 
 //data kelas
@@ -104,9 +130,9 @@ Route::get('/admin/dataKRS', [DataKRSController::class, 'index']);
 
 //Role Mahasiswa
 
-Route::get('/mahasiswa/login', function () {
-    return view('mahasiswa.login');
-})->name('mahasiswa.login');
+// Route::get('/mahasiswa/login', function () {
+//     return view('mahasiswa.login');
+// })->name('mahasiswa.login');
 
 Route::get('/mahasiswa/dashboard', function () {
     return view('mahasiswa.dashboard');

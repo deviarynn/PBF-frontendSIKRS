@@ -13,11 +13,12 @@
             <h2 class="text-2xl font-bold text-gray-800">SiKRS</h2>
         </div>
         
-        <form action="/" method="POST" class="space-y-4">
+        <form action="{{ route('admin.login') }}" method="POST">
+            @csrf
             <div>
                 <label class="block font-semibold">Username</label>
-                <input type="text" name="username" placeholder="masukkan nip..." 
-                class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <input type="text" name="username" placeholder="masukkan username..." 
+                    class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
             </div>
             <div>
                 <label class="block font-semibold">Password</label>
@@ -25,11 +26,10 @@
                     class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
             </div>
             <div class="flex justify-center">
-                <a href="/admin/dashboard" class="btn w-full text-center bg-blue-500 text-white p-3 rounded hover:bg-blue-700">
+                <button type="submit" class="btn w-full text-center bg-blue-500 text-white p-3 rounded hover:bg-blue-700">
                     LOGIN
-                </a>
+                </button>
             </div>
-            
         </form>
     </div>
 </body>
