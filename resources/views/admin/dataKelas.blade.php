@@ -134,7 +134,11 @@
                                 <td class="border border-gray-400 px-4 py-2">{{ $k['nama_kelas'] }}</td>
                                 <td class="border border-gray-400 px-4 py-2 text-center">
                                     <a href="/admin/editKelas/{{ $k['id_kelas'] }}" class="text-blue-500">✏</a>
-                                    <a href="/admin/deleteKelas/{{ $k['id_kelas'] }}" class="text-red-500 ml-2">🗑</a>
+                                    <form action="{{ url('admin/hapusKelas/' . $k['id_kelas']) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 ml-2" onclick="return confirm('Apakah Anda yakin ingin menghapus data kelas ini?');">🗑</button>
+                                    </form>                                
                                 </td>
                             </tr>
                             

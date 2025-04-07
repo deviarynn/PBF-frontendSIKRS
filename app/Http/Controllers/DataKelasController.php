@@ -47,8 +47,14 @@ class DataKelasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id_kelas)
     {
-        //
+        $response = Http::delete("http://localhost:8080/kelas/{$id_kelas}");
+
+        if ($response->successful()) {
+            return redirect('/admin/dataKelas')->with('success', 'Kelas berhasil dihapus');
+        } else {
+            return back()->with('error', 'Gagal menghapus mata kuliah');
+        }
     }
 }

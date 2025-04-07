@@ -69,46 +69,45 @@ class DataMatkulController extends Controller
     /**
      * Menampilkan halaman edit matkul
      */
+        public function edit($kode_matkul)
+        {
+            $response = Http::get("http://localhost:8080/matkul/$kode_matkul");
+    
+        // Ubah response jadi array
+            $matkul = $response->json(); 
 
-    public function edit($kode_matkul) {
-    $response = Http::get("http://localhost:8080/matkul/{$kode_matkul}");
+        // Kirim data ke view
+            return view('admin.editMatkul', compact('matkul'));
+            }
+    
 
-    if ($response->successful()) {
-        $matkul = $response->json();
-        return view('admin.editMatkul', compact('matkul'));
-    } else {
-        return redirect('/admin/dataMatkul')->with('error', 'Data mata kuliah tidak ditemukan');
-    }
-}
-
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $kode_matkul)
-    {
-    $response = Http::put("http://localhost:8080/matkul/{$kode_matkul}", [
-        'nama_matkul' => $request->nama_matkul,
-        'sks' => $request->sks,
-        'semester' => $request->semester,
-    ]);
-
-    if ($response->successful()) {
-        return redirect('/admin/dataMatkul')->with('success', 'Mata kuliah berhasil diperbarui');
-    } else {
-        return back()->with('error', 'Gagal memperbarui mata kuliah');
-    }
-    }
+     // PUT: Update data yang sudah ada
+     public function update(Request $request, $kode_matkul)
+     {
+         $response = Http::put("http://localhost:8080/api/matkul/$kode_matkul", [
+             'nama_matkul' => $request->input('nama_matkul'),
+             'sks' => $request->input('sks'),
+             'semester' => $request->input('semester'),
+         ]);
+     
+         if ($response->successful()) {
+             return redirect('/admin/dataMatkul')->with('success', 'Data berhasil diubah!');
+         } else {
+             return redirect()->back()->with('error', 'Gagal mengubah data.');
+         }
+     }
+     
 
 
-    public function destroy($kode_matkul)
-    {
-        $response = Http::delete("http://localhost:8080/matkul/{$kode_matkul}");
-
-        if ($response->successful()) {
-            return redirect('/admin/dataMatkul')->with('success', 'Mata kuliah berhasil dihapus');
-        } else {
-            return back()->with('error', 'Gagal menghapus mata kuliah');
-        }
-    }
+     public function destroy($kode_matkul)
+     {
+         $response = Http::delete("http://localhost:8080/api/matkul/$kode_matkul");
+     
+         if ($response->successful()) {
+             return redirect('/admin/dataMatkul')->with('success', 'Data berhasil dihapus!');
+         } else {
+             return redirect()->back()->with('error', 'Gagal menghapus data.');
+         }
+     }
+     
 }

@@ -144,9 +144,19 @@
                                 <td class="border border-gray-400 px-4 py-2">{{ $m['sks'] }}</td>
                                 <td class="border border-gray-400 px-4 py-2">{{ $m['semester'] }}</td>                                
                                 <td class="border border-gray-400 px-4 py-2 text-center">
-                                    <a href="{{ url('/admin/editMatkul/'. $m['kode_matkul']) }}" class="text-blue-500">✏</a>
-                                    <a href="{{ url('admin/editMatkul/' . $m['kode_matkul']) }}" class="text-red-500 ml-2">🗑</a>
+                                    <a href="{{ route('admin.editMatkul', ['kode_matkul' => $m['kode_matkul']]) }}"    class="text-gray-500 border border-transparent hover:border-blue-600 hover:text-blue-600 hover:scale-110 transition duration-200 ease-in-out">
+                                        ✏</a>
+                                    <form action="{{ route('admin.hapusMatkul', ['kode_matkul' => $m['kode_matkul']]) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                    <button type="submit" class="text-gray-500 border border-transparent hover:border-red-600 hover:text-red-600 hover:scale-110 transition duration-200 ease-in-out"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus matkul ini?');">
+                                        🗑
+                                    </button>
 
+                                    </form>
+                                    
+                                    
                                 </td>
                             </tr>
                             

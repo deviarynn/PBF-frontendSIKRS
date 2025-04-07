@@ -98,10 +98,10 @@ Route::get('/admin/dataMatkul', [DataMatkulController::class, 'index']);
 Route::get('/admin/tambahMatkul', [DataMatkulController::class, 'create']);
 Route::post('/admin/dataMatkul/store', [DataMatkulController::class, 'store'])->name('matkul.store');
 
-Route::get('/admin/edit/{kode_matkul}', [DataMatkulController::class, 'edit']);
-Route::put('/admin/update/{kode_matkul}', [DataMatkulController::class, 'update']);
+Route::get('/admin/editMatkul/{kode_matkul}', [DataMatkulController::class, 'edit'])->name('admin.editMatkul');
+Route::put('/admin/updateMatkul/{kode_matkul}', [DataMatkulController::class, 'update'])->name('admin.updateMatkul');
 
-Route::delete('/admin/hapusMatkul/{kode_matkul}', [DataMatkulController::class, 'destroy']);
+Route::delete('/admin/hapusMatkul/{kode_matkul}', [DataMatkulController::class, 'destroy'])->name('admin.hapusMatkul');
 
 
 //data kelas
@@ -117,6 +117,8 @@ Route::get('/admin/tambahKelas', function () {
 Route::get('/admin/editKelas', function () {
     return view('admin.editKelas');
 })->name('admin.editKelas');
+
+Route::delete('/admin/hapusKelas/{id_kelas}', [DataKelasController::class, 'destroy']);
 
 
 //data KRS

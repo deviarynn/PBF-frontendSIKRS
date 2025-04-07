@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class dataKRS extends Model
 {
     use HasFactory;
+    protected $table = 'krs'; // <- tambahkan ini!
+
 }

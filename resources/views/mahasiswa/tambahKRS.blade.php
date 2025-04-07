@@ -141,36 +141,37 @@
 
             <main class="flex-1 p-6">
                 <div class="flex justify-center items-center h-full">
-                    <div class="bg-gray-900 text-white w-96 rounded-lg shadow-lg p-6">
-                        <h2 class="text-lg font-bold text-center">Input KRS</h2>
-                        <form onsubmit="simpanKRS(event)" class="bg-white p-4 rounded-lg mt-4 text-black">
-                            <label for="nama" class="block text-black font-semibold">Nama</label>
-                            <input id="nama" type="text" class="w-full border border-gray-400 rounded p-2 mt-1">
-            
-                            <label for="npm" class="text-black font-semibold">NPM</label>
-                            <input id="npm" type="text" class="w-full border border-gray-400 rounded p-2 mt-1">
-            
-                            <label for="kelas" class="block text-black font-semibold">Kelas</label>
-                            <input id="kelas" type="text" class="w-full border border-gray-400 rounded p-2 mt-1">
-            
-                            <label for="prodi" class="block text-black font-semibold">Prodi</label>
-                            <input id="prodi" type="text" class="w-full border border-gray-400 rounded p-2 mt-1">
-            
-                            <label for="matkul" class="block text-black font-semibold">Matkul</label>
-                            <input id="matkul" type="text" class="w-full border border-gray-400 rounded p-2 mt-1">
-            
-                            <label for="sks" class="block text-black font-semibold">SKS</label>
-                            <input id="sks" type="number" class="w-full border border-gray-400 rounded p-2 mt-1">
-            
-                            <label for="semester" class="block text-black font-semibold">Semester</label>
-                            <input id="semester" type="number" class="w-full border border-gray-400 rounded p-2 mt-1">
-            
-                            <button type="submit" class="bg-green-700 text-white py-2 px-4 rounded-lg mt-4 w-full">Simpan</button>
+                    <div class="bg-gray-900 text-white w-72 rounded-lg shadow-lg p-5">
+                        <h2 class="text-base font-bold text-center">Input KRS</h2>
+                        <form onsubmit="simpanKRS(event)" class="bg-white p-2 rounded-lg mt-2 text-black text-sm">
+                            <label for="nama" class="block font-semibold">Nama</label>
+                            <input id="nama" type="text" class="w-full border border-gray-400 rounded p-1 mt-0.5">
+                    
+                            <label for="npm" class="font-semibold">NPM</label>
+                            <input id="npm" type="text" class="w-full border border-gray-400 rounded p-1 mt-0.5">
+                    
+                            <label for="kelas" class="block font-semibold">Kelas</label>
+                            <input id="kelas" type="text" class="w-full border border-gray-400 rounded p-1 mt-0.5">
+                    
+                            <label for="prodi" class="block font-semibold">Prodi</label>
+                            <input id="prodi" type="text" class="w-full border border-gray-400 rounded p-1 mt-0.5">
+                    
+                            <label for="matkul" class="block font-semibold">Matkul</label>
+                            <input id="matkul" type="text" class="w-full border border-gray-400 rounded p-1 mt-0.5">
+                    
+                            <label for="sks" class="block font-semibold">SKS</label>
+                            <input id="sks" type="number" class="w-full border border-gray-400 rounded p-1 mt-0.5">
+                    
+                            <label for="semester" class="block font-semibold">Semester</label>
+                            <input id="semester" type="number" class="w-full border border-gray-400 rounded p-1 mt-0.5">
+                    
+                            <button type="submit" class="bg-green-700 text-white py-2 px-4 rounded-lg mt-2 w-full">Simpan</button>
                         </form>
                     </div>
+                                                     
                 </div>
                 <div class="absolute left-100 bottom-0 ml-4 mb-4">
-                    <a href="/mahasiswa/dataKRS" class="bg-yellow-700 text-white py-2 px-4 rounded-lg block text-center">Back</a>
+                    <a href="/mahasiswa/dashboard" class="bg-yellow-700 text-white py-2 px-4 rounded-lg block text-center">Back</a>
                 </div>
             </main>
             </div>

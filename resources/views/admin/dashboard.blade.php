@@ -76,35 +76,35 @@
                         <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
                             <p class="font-semibold">Data Mahasiswa</p>
                             <p class="text-3xl mb-1">🎓</p>
-                            <p class="text-gray-500">5</p>
+                            <p class="text-gray-500">{{ $jumlahMahasiswa }}</p>
                         </div>
     
                         <!-- Data Matkul -->
                         <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
                             <p class="font-semibold">Data Matkul</p>
                             <p class="text-3xl mb-1">📚</p>
-                            <p class="text-gray-500">5</p>
+                            <p class="text-gray-500">{{ $jumlahMatkul }}</p>
                         </div>
                 
                         <!-- Data Prodi -->
                         <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
                             <p class="font-semibold">Data Prodi</p>
                             <p class="text-3xl mb-1">🏫</p>
-                            <p class="text-gray-500">6</p>
+                            <p class="text-gray-500">{{ $jumlahProdi }}</p>
                         </div>
                 
                         <!-- Data Kelas -->
                         <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
                             <p class="font-semibold">Data Kelas</p>
                             <p class="text-3xl mb-1">🏠</p>
-                            <p class="text-gray-500">5</p>
+                            <p class="text-gray-500">{{ $jumlahKelas }}</p>
                         </div>
                 
                         <!-- Data KRS -->
                         <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
                             <p class="font-semibold">Data KRS</p>
                             <p class="text-3xl mb-1">📝</p>
-                            <p class="text-gray-500">7</p>
+                            <p class="text-gray-500">{{ $jumlahKrs }}</p>
                         </div>
                     </div>
                 </div>                

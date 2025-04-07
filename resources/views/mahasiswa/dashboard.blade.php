@@ -77,7 +77,7 @@
 
                     <div class="mt-4 flex justify-center space-x-4">
                         {{-- <a href="/mahasiswa/dataMatkul" class="text-blue-600 hover:underline">Lihat Data Matkul</a> --}}
-                        <a href="/mahasiswa/dataKRS" class="text-blue-600 hover:underline">Isi KRS</a>
+                        <a href="/mahasiswa/tambahKRS" class="text-blue-600 hover:underline">Isi KRS</a>
                     </div>
                 </div>
             </div>                

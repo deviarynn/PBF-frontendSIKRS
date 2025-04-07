@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class dataKelas extends Model
 {
     use HasFactory;
+    protected $table = 'kelas'; // <- tambahkan ini!
+
 }
