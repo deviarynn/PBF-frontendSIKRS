@@ -60,13 +60,14 @@
     </div>
     <hr class="border-gray-600 mb-4">
     <ul class="flex-1">
-      <li class="mb-3">
-        <a href="/admin/dashboard" class="block py-2 px-3 rounded hover:bg-cyan-600 transition">
-          <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M3 4v16h18V4H3zm2 12V6h14v10H5z" />
-          </svg> Dashboard
-        </a>
-      </li>
+        <li class="mb-3">
+            <a href="/admin/dashboard" class="block py-2 px-3 rounded hover:bg-cyan-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 4v16h18V4H3zm2 12V6h14v10H5z" />
+              </svg>
+              Dashboard
+            </a>
+          </li>
 
       <li class="mb-3 relative">
         <button id="menuButton" onclick="toggleDropdown()" class="flex items-center space-x-2 w-full text-left py-2 px-3 rounded hover:bg-cyan-600 transition">
