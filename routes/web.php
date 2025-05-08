@@ -80,9 +80,12 @@ Route::get('/admin/editMhs', function () {
 //data prodi
 Route::get('/admin/dataProdi', [DataProdiController::class, 'index']);
 
-Route::get('/admin/tambahProdi', function () {
-    return view('admin.tambahProdi');
-})->name('admin.tambahProdi');
+// Route::get('/admin/tambahProdi', function () {
+//     return view('admin.tambahProdi');
+// })->name('admin.tambahProdi');
+
+Route::get('/admin/tambahProdi', [DataProdiController::class, 'create']);
+Route::post('/admin/dataProdi/store', [DataProdiController::class, 'store'])->name('prodi.store');
 
 Route::get('/admin/editProdi', function () {
     return view('admin.editProdi');
@@ -90,9 +93,6 @@ Route::get('/admin/editProdi', function () {
 
 
 //data matkul
-// Route::get('/admin/dataMatkul', function () {
-//     return view('admin.dataMatkul');
-// })->name('admin.dataMatkul');
 Route::get('/admin/dataMatkul', [DataMatkulController::class, 'index']);
 
 Route::get('/admin/tambahMatkul', [DataMatkulController::class, 'create']);
@@ -110,9 +110,13 @@ Route::delete('/admin/hapusMatkul/{kode_matkul}', [DataMatkulController::class, 
 // })->name('admin.dataKelas');
 Route::get('/admin/dataKelas', [DataKelasController::class, 'index']);
 
-Route::get('/admin/tambahKelas', function () {
-    return view('admin.tambahKelas');
-})->name('admin.tambahKelas');
+// Route::get('/admin/tambahKelas', function () {
+//     return view('admin.tambahKelas');
+// })->name('admin.tambahKelas');
+Route::get('/admin/tambahKelas', [DataKelasController::class, 'create']);
+// routes/web.php
+Route::post('/admin/dataKelas', [DataKelasController::class, 'store'])->name('kelas.store');
+
 
 Route::get('/admin/editKelas', function () {
     return view('admin.editKelas');
@@ -136,19 +140,17 @@ Route::get('/admin/dataKRS', [DataKRSController::class, 'index']);
 //     return view('mahasiswa.login');
 // })->name('mahasiswa.login');
 
-Route::get('/mahasiswa/dashboard', function () {
-    return view('mahasiswa.dashboard');
-})->name('mahasiswa.dashboard');
-
 //Data Matkul
 Route::get('/mahasiswa/dataMatkul', function () {
     return view('mahasiswa.dataMatkul');
 })->name('mahasiswa.dataMatkul');
 
 //Data KRS
-Route::get('/mahasiswa/dataKRS', function () {
-    return view('mahasiswa.dataKRS');
-})->name('mahasiswa.dataKRS');
+// Route::get('/mahasiswa/dataKRS', function () {
+//     return view('mahasiswa.dataKRS');
+// })->name('mahasiswa.dataKRS');
+
+Route::get('/mahasiswa/dataKRS', [DataKRSController::class, 'index']);
 
 Route::get('/mahasiswa/tambahKRS', function () {
     return view('mahasiswa.tambahKRS');

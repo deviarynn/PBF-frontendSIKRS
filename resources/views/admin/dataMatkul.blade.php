@@ -121,9 +121,9 @@
                 <!-- Main Content -->
                 <div class="bg-white shadow-md rounded p-4 max-w-4xl mx-auto overflow-x-auto">
                     <div class="flex justify-between items-center mt-4">
-                        <a href="/admin/tambahMatkul" class="bg-green-900 text-white px-4 py-2 rounded">
+                        <a href="/admin/tambahMatkul" class="bg-green-900 hover:bg-green-700 transition duration-200 text-white px-4 py-2 rounded">
                             Tambah
-                        </a>                        
+                        </a>                                                
                         <input type="text" placeholder="cari matkul..." class="border p-2 rounded">
                     </div>
                     <table class="w-full mt-4 border-collapse border border-gray-300 text-center">
@@ -144,7 +144,7 @@
                                 <td class="border border-gray-400 px-4 py-2">{{ $m['sks'] }}</td>
                                 <td class="border border-gray-400 px-4 py-2">{{ $m['semester'] }}</td>                                
                                 <td class="border border-gray-400 px-4 py-2 text-center">
-                                    <a href="{{ route('admin.editMatkul', ['kode_matkul' => $m['kode_matkul']]) }}"    class="text-gray-500 border border-transparent hover:border-blue-600 hover:text-blue-600 hover:scale-110 transition duration-200 ease-in-out">
+                                    <a href="{{ route('admin.editMatkul', ['kode_matkul' => $m['kode_matkul']]) }}"  class="text-gray-500 border border-transparent hover:border-blue-600 hover:text-blue-600 hover:scale-110 transition duration-200 ease-in-out">
                                         ✏</a>
                                     <form action="{{ route('admin.hapusMatkul', ['kode_matkul' => $m['kode_matkul']]) }}" method="POST" class="inline">
                                         @csrf

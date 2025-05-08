@@ -114,7 +114,7 @@
                 <!-- Main Content -->
                 <div class="bg-white shadow-md rounded p-4 max-w-4xl mx-auto overflow-x-auto">
                     <div class="flex justify-between items-center mt-4">
-                        <a href="/admin/tambahKelas" class="bg-green-900 text-white px-4 py-2 rounded">
+                        <a href="/admin/tambahKelas" class="bg-green-900 hover:bg-green-700 transition duration-200 text-white px-4 py-2 rounded">
                             Tambah
                         </a>                        
                         <input type="text" placeholder="cari kelas..." class="border p-2 rounded">
@@ -133,11 +133,12 @@
                                 <td class="border border-gray-400 px-4 py-2">{{ $k['id_kelas'] }}</td>
                                 <td class="border border-gray-400 px-4 py-2">{{ $k['nama_kelas'] }}</td>
                                 <td class="border border-gray-400 px-4 py-2 text-center">
-                                    <a href="/admin/editKelas/{{ $k['id_kelas'] }}" class="text-blue-500">✏</a>
+                                    <a href="/admin/editKelas/{{ $k['id_kelas'] }}"  class="text-gray-500 border border-transparent hover:border-blue-600 hover:text-blue-600 hover:scale-110 transition duration-200 ease-in-out">✏</a>
                                     <form action="{{ url('admin/hapusKelas/' . $k['id_kelas']) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-500 ml-2" onclick="return confirm('Apakah Anda yakin ingin menghapus data kelas ini?');">🗑</button>
+                                        <button type="submit" class="text-gray-500 border border-transparent hover:border-red-600 hover:text-red-600 hover:scale-110 transition duration-200 ease-in-out"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus matkul ini?');">🗑</button>
                                     </form>                                
                                 </td>
                             </tr>

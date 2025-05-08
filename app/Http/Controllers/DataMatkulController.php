@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Session as FacadesSession;
 
 class DataMatkulController extends Controller
 {
-    /**
-     * Menampilkan data matkul
-     */
     public function index()
     {
         $response = Http::get('http://localhost:8080/matkul');

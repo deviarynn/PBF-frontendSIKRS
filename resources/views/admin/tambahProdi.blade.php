@@ -109,12 +109,13 @@
                     <div class="bg-gray-900 text-white w-96 rounded-lg shadow-lg p-6">
                         <h2 class="text-lg font-bold text-center">Tambah Data Program Studi</h2>
                         <div class="bg-white p-4 rounded-lg mt-4 text-black">
-                            
+                            <form action="{{ route('prodi.store') }}" method="POST">
+                            @csrf
                             <label class="block font-semibold">Kode Prodi</label>
-                            <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
+                            <input type="text" name="kode_prodi" id="kode_prodi" value="{{ Session::get('kode_prodi') }}" class="w-full border border-gray-400 rounded p-2 mt-1">
 
                             <label class="block font-semibold">Prodi</label>
-                            <input type="text" placeholder="Contoh: D3-Teknik Listrik" class="w-full border border-gray-400 rounded p-2 mt-1">
+                            <input type="text" name="nama_prodi" id="nama_prodi" placeholder="Contoh: D3-Teknik Listrik" value="{{ Session::get('nama_prodi') }}" class="w-full border border-gray-400 rounded p-2 mt-1">
                             <hr><br>
                             <div class="flex justify-center mt-4">
                                 <button class="bg-green-700 text-white py-2 px-4 rounded-lg">Simpan</button>

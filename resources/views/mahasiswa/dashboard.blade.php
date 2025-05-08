@@ -28,7 +28,8 @@
                     </button>                    
                     <ul id="dropdownMenu" class="hidden bg-gray-600 mt-2 rounded">
                         {{-- <li class="py-2 px-4 hover:bg-gray-500"><a href="/mahasiswa/dataMatkul">Data Matkul</a></li> --}}
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/mahasiswa/dataKRS">Isi KRS</a></li>
+                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/mahasiswa/tambahKRS">Isi KRS</a></li>
+                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/mahasiswa/dataKRS">Lihat data KRS</a></li>
                     </ul>
                 </li>
                 <li class="py-2 text-red-600 flex justify-between items-center">
@@ -78,6 +79,8 @@
                     <div class="mt-4 flex justify-center space-x-4">
                         {{-- <a href="/mahasiswa/dataMatkul" class="text-blue-600 hover:underline">Lihat Data Matkul</a> --}}
                         <a href="/mahasiswa/tambahKRS" class="text-blue-600 hover:underline">Isi KRS</a>
+                        <a href="/mahasiswa/dataKRS" class="text-blue-600 hover:underline">Lihat Data KRS</a>
+
                     </div>
                 </div>
             </div>                

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\dataKelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session as FacadesSession;
+
 
 
 class DataKelasController extends Controller
@@ -20,13 +22,29 @@ class DataKelasController extends Controller
         }
     }
 
+    public function create()
+    {
+        return view('admin.tambahKelas');
+    }
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    // DataKelasController (di frontend project)
+public function store(Request $request)
+{
+    $response = Http::post('http://localhost:8080/kelas', [
+        'nama_kelas' => $request->nama_kelas,
+    ]);
+    
+    if ($response->successful()) {
+        return redirect()->route('kelas.index')->with('success', 'Data berhasil disimpan!');
+    } else {
+        return back()->withErrors('Gagal menyimpan data');
     }
+    
+}
+
+    
 
     /**
      * Display the specified resource.
