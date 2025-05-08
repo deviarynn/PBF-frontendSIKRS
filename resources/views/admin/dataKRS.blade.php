@@ -77,11 +77,11 @@
                   </svg>
                 </button>
                 <ul id="dropdownMenu" class="hidden absolute left-0 w-full mt-1 bg-gray-600 rounded shadow-lg z-20">
-                  <li><a href="/admin/dataMhs" class="block py-2 px-4 hover:bg-gray-700 transition">Data Mahasiswa</a></li>
-                  <li><a href="/admin/dataProdi" class="block py-2 px-4 hover:bg-gray-700 transition">Data Prodi</a></li>
-                  <li><a href="/admin/dataMatkul" class="block py-2 px-4 hover:bg-gray-700 transition">Data Matkul</a></li>
-                  <li><a href="/admin/dataKelas" class="block py-2 px-4 hover:bg-gray-700 transition">Data Kelas</a></li>
-                  <li><a href="/admin/dataKRS" class="block py-2 px-4 hover:bg-gray-700 bg-cyan-700 text-white font-semibold">Data KRS</a></li>
+                  <li><a href="/admin/dataMhs" class="block py-2 px-4 hover:bg-gray-800 transition">Data Mahasiswa</a></li>
+                  <li><a href="/admin/dataProdi" class="block py-2 px-4 hover:bg-gray-800 transition">Data Prodi</a></li>
+                  <li><a href="/admin/dataMatkul" class="block py-2 px-4 hover:bg-gray-800 transition">Data Matkul</a></li>
+                  <li><a href="/admin/dataKelas" class="block py-2 px-4 hover:bg-gray-800 transition">Data Kelas</a></li>
+                  <li><a href="/admin/dataKRS" class="block py-2 px-4 hover:bg-gray-800 bg-cyan-700 text-white font-semibold">Data KRS</a></li>
                 </ul>
               </li>
             </ul>
