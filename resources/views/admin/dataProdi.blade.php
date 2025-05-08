@@ -174,8 +174,10 @@
                   <td class="border px-4 py-2">{{ $p['kode_prodi'] }}</td>
                   <td class="border px-4 py-2">{{ $p['nama_prodi'] }}</td>
                   <td class="border px-4 py-2">
-                    <a href="/admin/editProdi/{{ $p['kode_prodi'] }}" class="text-blue-600 hover:text-blue-800 mr-2 transition">✏️</a>
-                    <a href="/admin/deleteProdi/{{ $p['kode_prodi'] }}" onclick="return confirm('Yakin ingin menghapus prodi ini?');" class="text-red-600 hover:text-red-800 transition">🗑️</a>
+                    <a href="/admin/editProdi/{{ $p['kode_prodi'] }}" class="text-gray-500 border border-transparent hover:border-blue-600 hover:text-blue-600 hover:scale-110 transition duration-200 ease-in-out">
+                      ✏</a>
+                    <a href="/admin/deleteProdi/{{ $p['kode_prodi'] }}" onclick="return confirm('Yakin ingin menghapus prodi ini?');" class="text-gray-500 border border-transparent hover:border-red-600 hover:text-red-600 hover:scale-110 transition duration-200 ease-in-out"
+                    onclick="return confirm('Apakah Anda yakin ingin menghapus matkul ini?');">🗑️</a>
                   </td>
                 </tr>
                 @endforeach

@@ -152,8 +152,8 @@
                 <tr>
                     <th class="border px-4 py-2">NPM</th>
                     <th class="border px-4 py-2">Nama Mahasiswa</th>
-                    <th class="border px-4 py-2">Prodi</th>
                     <th class="border px-4 py-2">Kelas</th>
+                    <th class="border px-4 py-2">Prodi</th>
                     <th class="border px-4 py-2">Aksi</th>
                   </tr>
                 </thead>

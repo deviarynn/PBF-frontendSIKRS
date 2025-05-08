@@ -121,9 +121,9 @@
                 <!-- Main Content -->
                 <div class="bg-white shadow-md rounded p-4 max-w-4xl mx-auto overflow-x-auto">
                     <div class="flex justify-between items-center mt-4">
-                        <input type="text" placeholder="cari npm..." class="border p-2 rounded">
+                        <input type="text" id="searchInput" placeholder="Cari NPM atau lainnya..." class="border p-2 rounded w-64 mb-3">
                     </div>
-                    <table id="kelasTable" class="w-full border-collapse border border-gray-300 text-center">
+                    <table id="krsTable" class="w-full border-collapse border border-gray-300 text-center">
                         <thead>
                             <tr class="bg-gray-200">
                                 <th class="border p-2">No.</th>
@@ -138,6 +138,17 @@
 
                             </tr>
                         </thead>
+                        <script>
+                            document.getElementById("searchInput").addEventListener("keyup", function () {
+                              const searchTerm = this.value.toLowerCase();
+                              const rows = document.querySelectorAll("#krsTable tbody tr");
+                          
+                              rows.forEach(row => {
+                                const rowText = row.innerText.toLowerCase();
+                                row.style.display = rowText.includes(searchTerm) ? "" : "none";
+                              });
+                            });
+                          </script>
                         <tbody>
                             @foreach ($krs as $kr)                                
                             <tr>
