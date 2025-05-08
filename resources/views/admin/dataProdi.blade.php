@@ -75,14 +75,16 @@
         </li>
 
         <li class="mb-3 relative">
-          <button id="menuButton" onclick="toggleDropdown()" class="flex items-center justify-between w-full py-2 px-3 rounded hover:bg-cyan-600 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg> Menu
-            <svg id="dropdownIcon" class="ml-2 h-4 w-4 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M5.23 7.21a.75.75 0 011.06-.02L10 10.586l3.71-3.37a.75.75 0 011.02 1.1l-4.25 3.86a.75.75 0 01-1.02 0L5.25 8.29a.75.75 0 01-.02-1.06z" />
+          <button id="menuButton" onclick="toggleDropdown()" class="flex items-center space-x-2 w-full text-left py-2 px-3 rounded hover:bg-cyan-600 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M4 6h16M4 12h16M4 18h7"></path>
             </svg>
-          </button>
+            <span>Menu</span>
+            <svg id="dropdownIcon" class="w-4 h-4 ml-auto transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                <path fill="currentColor" d="M5.23 7.21a.75.75 0 011.06 0L10 10.91l3.71-3.7a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 010-1.06z"/>
+            </svg>
+        </button>
+        
 
           <ul id="dropdownMenu" class="hidden absolute left-0 w-full mt-1 bg-gray-500 text-sm rounded shadow-lg opacity-100 z-20">
             <li>
