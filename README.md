@@ -53,7 +53,7 @@ composer install
 ```bash
 cp .env.example .env
 ```
-## 4.🛠️ Konfigurasi Database
+### 4.🛠️ Konfigurasi Database
 
 Buka file `.env` dan ubah konfigurasi database.
 
@@ -66,7 +66,6 @@ DB_PORT=3306
 DB_DATABASE=db_krs
 DB_USERNAME=root
 DB_PASSWORD=
-<<<<<<< HEAD
 
 ```
 ## 🚀 Menyalakan server laravel untuk menjalankan aplikasi
