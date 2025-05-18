@@ -39,8 +39,9 @@ Pastikan perangkat Anda sudah terinstal:
 
 ## INSTALASI PROJECT LARAVEL
 ### 1. Clone Repository 
+```
 git clone https://github.com/deviarynn/PBF-frontendSIKRS
-
+```
 <p>Masuk ke file yang sudah di clone, buka cmd. Ketik "code ." untuk membuka VSCode file ini</p>
 
 ### 2. Install Dependency
