@@ -84,7 +84,7 @@ SiKRS</h2>
           <li><a href="/admin/dataMhs" class="block py-2 px-4 hover:bg-gray-800">Data Mahasiswa</a></li>
           <li><a href="/admin/dataProdi" class="block py-2 px-4 hover:bg-gray-800">Data Prodi</a></li>
           <li><a href="/admin/dataMatkul" class="block py-2 px-4 hover:bg-gray-800">Data Matkul</a></li>
-          <li><a href="/admin/dataKelas" class="block py-2 px-4 hover:bg-gray-800 bg-cyan-700 text-white font-semibold"">Data Kelas</a></li>
+          <li><a href="/admin/dataKelas" class="block py-2 px-4 hover:bg-gray-800 bg-cyan-700 text-white font-semibold">Data Kelas</a></li>
           <li><a href="/admin/dataKRS" class="block py-2 px-4 hover:bg-gray-800">Data KRS</a></li>
         </ul>
       </li>
