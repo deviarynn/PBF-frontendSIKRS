@@ -10,19 +10,19 @@
 ## ⚙️ Tentang Sistem
 ### SISTEM KRS ONLINE POLITEKNIK NEGERI CILACAP
 
-Sistem Kartu Rencana Studi (KRS) Online Politeknik Negeri Cilacap adalah platform berbasis web yang digunakan untuk pengelolaan KRS secara digital.
+<p> Sistem Kartu Rencana Studi (KRS) Online Politeknik Negeri Cilacap adalah platform berbasis web yang digunakan untuk pengelolaan KRS secara digital.</p>
 
-Sistem ini memungkinkan admin mendaftarkan mata kuliah secara online, menggantikan prosedur manual. Data akademik seperti program studi dan mata kuliah diintegrasikan dalam sistem, sehingga proses pengisian dan administrasi KRS lebih cepat, akurat, dan efisien.
+<p> Sistem ini memungkinkan admin mendaftarkan mata kuliah secara online, menggantikan prosedur manual. Data akademik seperti program studi dan mata kuliah diintegrasikan dalam sistem, sehingga proses pengisian dan administrasi KRS lebih cepat, akurat, dan efisien.</p>
 
-Dengan demikian, Politeknik Negeri Cilacap dapat mengelola data akademik dan KRS secara terpusat dan paperless dalam satu sistem terpadu.
+<p> Dengan demikian, Politeknik Negeri Cilacap dapat mengelola data akademik dan KRS secara terpusat dan paperless dalam satu sistem terpadu.</p>
 
 #### 🖥️ Fitur Utama
-1. Admin
+<p> 1. Admin
 <p>Administrator (staff akademik) dapat mengelola seluruh data akademik melalui operasi CRUD (create, read, update, delete). Fitur ini mencakup pengelolaan data mahasiswa, program studi (prodi), mata kuliah, kelas perkuliahan, dan data KRS mahasiswa. Misalnya, admin dapat menambah, mengubah, atau menghapus informasi mahasiswa, serta menetapkan kelas dan KRS untuk tiap semester, seperti dijelaskan dalam studi KRS online di institusi lain</p>
-
-2. Mahasiswa
+</p>
+<p> 2. Mahasiswa
 <p>Mahasiswa menggunakan sistem untuk melihat riwayat dan isi data KRS mereka secara online. Mahasiswa dapat mencetak Kartu Rencana Studi (KRS) yang telah diisi oleh administrator/staf akademik. Dengan begitu, mahasiswa dapat mengakses informasi KRS dan mencetak salinannya kapan saja selama periode pengisian, mendukung proses perencanaan studi yang teratur.</p>
-
+</p>
 ## 📁 Persyaratan Instalasi Laravel
 
 Pastikan perangkat Anda sudah terinstal:
@@ -76,15 +76,6 @@ php artisan serve
 
 Aplikasi bisa diakses pada browser dan berjalan di port http://127.0.0.1:8000
 
-=======
 
-```
-## 🚀 Menyalakan server laravel untuk Aplikasi
-
-```bash
-php artisan serve
-```
-
-Aplikasi bisa diakses pada browser dan berjalan di port http://127.0.0.1:8000
 
 
