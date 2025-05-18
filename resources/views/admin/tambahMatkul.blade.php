@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SiKRS - Data Matkul</title>
+  <title>SiKRS - Tambah Data Matkul</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     let isDropdownOpen = false;
@@ -49,7 +49,7 @@
     });
   </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-300 text-gray-800">
 <div class="flex h-screen overflow-hidden">
 
   <!-- Sidebar -->
@@ -115,39 +115,46 @@
         <span class="font-medium">Admin</span>
       </div>
     </nav>
-
-            @if ($errors->any())
-                    <div class="pt-3">
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $item)
-                                    <li>{{ $item }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                        
-                    @endif
-
             <main class="flex-1 p-6">
                 <div class="flex justify-center items-center h-full">
                     <div class="bg-gray-900 text-white w-96 rounded-lg shadow-lg p-6">
                         <h2 class="text-lg font-bold text-center">Tambah Data Matkul</h2>
                         <div class="bg-white p-4 rounded-lg mt-4 text-black">
 
-                            <form action="{{ route('matkul.store') }}" method="POST">
+                            <form action="{{ route('admin.storeMatkul') }}" method="POST">
                             @csrf
-                            <label for="kode_matkul" class="block font-semibold">Kode Matkul</label>
-                            <input type="text" id="kode_matkul" name="kode_matkul" placeholder="" value="{{ Session::get('kode_matkul') }}" class="w-full border border-gray-400 rounded p-2 mt-1">
+                            
+                            <label class="block font-semibold">Kode Matkul</label>
+                            <input type="text" name="kode_matkul" id="kode_matkul" placeholder="Masukan Kode Matkul"
+                                value="{{ old('kode_matkul', Session::get('kode_matkul')) }}"
+                                class="w-full border rounded p-2 mt-1 @error('kode_matkul') border-red-500 @enderror">
+                            @error('kode_matkul')
+                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                            @enderror
 
-                            <label for="nama_matkul" class="block font-semibold">Matkul</label>
-                            <input type="text" id="nama_matkul" name="nama_matkul" placeholder="" value="{{ Session::get('nama_matkul') }}" class="w-full border border-gray-400 rounded p-2 mt-1">
+                            <label class="block font-semibold">Nama Matkul</label>
+                            <input type="text" name="nama_matkul" id="nama_matkul" placeholder="Masukan nama Matkul"
+                                value="{{ old('nama_matkul', Session::get('nama_matkul')) }}"
+                                class="w-full border rounded p-2 mt-1 @error('nama_matkul') border-red-500 @enderror">
+                            @error('nama_matkul')
+                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                            @enderror
     
-                            <label for="sks" class="block font-semibold">SKS</label>
-                            <input type="number" id="sks" name="sks" placeholder="" value="{{ Session::get('sks') }}" class="w-full border border-gray-400 rounded p-2 mt-1">
+                            <label class="block font-semibold">SKS</label>
+                            <input type="number" name="sks" id="sks" placeholder=""
+                                value="{{ old('sks', Session::get('sks')) }}"
+                                class="w-full border rounded p-2 mt-1 @error('sks') border-red-500 @enderror">
+                            @error('sks')
+                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                            @enderror
     
-                            <label for="semester" class="block font-semibold">Semester</label>
-                            <input type="number" id="semester" name="semester" placeholder="" value="{{ Session::get('semester') }}" class="w-full border border-gray-400 rounded p-2 mt-1">
+                            <label class="block font-semibold">Semester</label>
+                            <input type="number" name="semester" id="semester" placeholder=""
+                                value="{{ old('semester', Session::get('semester')) }}"
+                                class="w-full border rounded p-2 mt-1 @error('semester') border-red-500 @enderror">
+                            @error('semester')
+                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                            @enderror
     
                             <div class="flex justify-center mt-4">
                                 <button class="bg-green-700 text-white py-2 px-4 rounded-lg hover:bg-green-900 transition duration-200">Simpan</button>

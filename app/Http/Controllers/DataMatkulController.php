@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\dataMatkul;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session as FacadesSession;
+use Illuminate\Support\Facades\DB;
 
 class DataMatkulController extends Controller
 {
@@ -28,83 +28,99 @@ class DataMatkulController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
-        FacadesSession::flash('kode_matkul', $request->kode_matkul);
-        FacadesSession::flash('nama_matkul', $request->nama_matkul);
-        FacadesSession::flash('sks', $request->sks);
-        FacadesSession::flash('semester', $request->semester);
-
-
-
-
+    // DataKelasController (di frontend project)
+    public function store(Request $request)
+    {
         $request->validate([
-            'kode_matkul' => 'required|unique:matkul,kode_matkul',
-            'nama_matkul' => 'required',
-            'sks' => 'required|integer',
-            'semester' => 'required|integer',
-        ],[
-            'kode_matkul.required' => 'kode matkul wajib diisi',
-            'kode_matkul.unique' => 'kode matkul sudah ada di database',
-            'nama_matkul.required' => 'nama matkul wajib diisi',
-            'sks.required' => 'sks wajib diisi',
-            'sks.integer' => 'sks harus berupa angka',
-            'semester.required' => 'semester wajib diisi',
-            'semester.integer' => 'semester harus berupa angka',
-        ]);
+        'kode_matkul' => 'required|string|max:5',
+        'nama_matkul' => 'required|string|max:50',
+        'sks' => 'required|string|max:5',
+        'semester' => 'required|string|max:1',
 
-        $data =[
+        ], [
+            'kode_matkul.required' => 'Kode Matkul wajib diisi.',
+            'kode_matkul.max' => 'Kode matkul tidak boleh lebih dari 5 karakter.',
+            'nama_matkul.required' => 'Nama Matkul wajib diisi.',
+            'sks.required' => 'SKS wajib diisi.',
+            'semester.required' => 'Semester wajib diisi.',
+            'semester.max' => 'Semester tidak boleh lebih dari 1 karakter.',
+
+        ]);
+        $existingMatkul = DB::table('matkul')->where('kode_matkul', $request->kode_matkul)->first();
+
+        if ($existingMatkul) {
+            return back()->withErrors(['kode_matkul' => 'Data Kode Matkul sudah ada .'])->withInput();
+        }
+
+        $response = Http::asForm()->post('http://localhost:8080/matkul', [
             'kode_matkul' => $request->kode_matkul,
             'nama_matkul' => $request->nama_matkul,
             'sks' => $request->sks,
             'semester' => $request->semester,
-        ];
-    //    
-    dataMatkul::create($data);
-    return redirect()->to('admin/dataMatkul')->with('Success', 'Berhasil menambahkan data!');
-}
+        ]);
+
+        if ($response->successful()) {
+            return redirect()->route('admin.dataMatkul')->with('success', 'Data berhasil disimpan');
+        } else {
+            return back()->withErrors('Gagal menyimpan data');
+        }
+    }
+
+ 
+    public function show(string $id)
+    {
+        //
+    }
 
     /**
-     * Menampilkan halaman edit matkul
+     * Update the specified resource in storage.
      */
-        public function edit($kode_matkul)
+       public function edit($kode_matkul)
         {
             $response = Http::get("http://localhost:8080/matkul/$kode_matkul");
-    
-        // Ubah response jadi array
-            $matkul = $response->json(); 
 
-        // Kirim data ke view
-            return view('admin.editMatkul', compact('matkul'));
+            if ($response->successful()) {
+                $data = $response->json();
+
+                // Ambil elemen pertama dari array
+                $matkul = $data[0];
+
+                return view('admin.editMatkul', compact('matkul'));
+            } else {
+                return back()->with('error', 'Data matkul tidak ditemukan.');
             }
-    
-
-     // PUT: Update data yang sudah ada
-     public function update(Request $request, $kode_matkul)
-     {
-         $response = Http::put("http://localhost:8080/api/matkul/$kode_matkul", [
-             'nama_matkul' => $request->input('nama_matkul'),
-             'sks' => $request->input('sks'),
-             'semester' => $request->input('semester'),
-         ]);
-     
-         if ($response->successful()) {
-             return redirect('/admin/dataMatkul')->with('success', 'Data berhasil diubah!');
-         } else {
-             return redirect()->back()->with('error', 'Gagal mengubah data.');
-         }
-     }
-     
+        }
 
 
-     public function destroy($kode_matkul)
-     {
-         $response = Http::delete("http://localhost:8080/api/matkul/$kode_matkul");
-     
-         if ($response->successful()) {
-             return redirect('/admin/dataMatkul')->with('success', 'Data berhasil dihapus!');
-         } else {
-             return redirect()->back()->with('error', 'Gagal menghapus data.');
-         }
-     }
-     
+    public function update(Request $request, $kode_matkul)
+{
+    $response = Http::asForm()->put("http://localhost:8080/matkul/{$request->kode_matkul_lama}", [
+    'kode_matkul' => $request->kode_matkul,
+    'nama_matkul' => $request->nama_matkul,
+    'sks' => $request->sks,
+    'semester' => $request->semester,
+]);
+
+    if ($response->successful()) {
+        return redirect()->route('admin.dataMatkul')->with('success', 'Data berhasil diupdate!');
+    } else {
+        return back()->with('error', 'Gagal update data.');
+    }
+}
+
+
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($kode_matkul)
+    {
+        $response = Http::delete("http://localhost:8080/matkul/{$kode_matkul}");
+
+        if ($response->successful()) {
+            return redirect('/admin/dataMatkul')->with('success', 'Kelas berhasil dihapus');
+        } else {
+            return back()->with('error', 'Gagal menghapus mata kuliah');
+        }
+    }
 }

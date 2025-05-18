@@ -41,7 +41,7 @@ class AuthController extends Controller
         return redirect()->route('admin.dashboard');
     }
 
-    return back()->withErrors(['password' => 'Password salah']);
+return redirect()->back()->with('error', 'Username atau password salah.');
 }
 
 public function loginMahasiswa(Request $request)
@@ -63,7 +63,6 @@ public function loginMahasiswa(Request $request)
         Auth::login($user);
         return redirect()->route('mahasiswa.dashboard');
     }
-
-    return back()->withErrors(['password' => 'Password salah']);
+return redirect()->back()->with('error', 'Username atau password salah.');
 }
 }

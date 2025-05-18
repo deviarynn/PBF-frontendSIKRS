@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SiKRS - Data Prodi</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     let isDropdownOpen = false;
 
@@ -53,10 +54,9 @@
     });
   </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-300 text-gray-800">
 
-  <div class="flex h-screen overflow-hidden">
-
+<div class="flex min-h-screen overflow-x-hidden">
     <!-- Sidebar -->
     <aside id="sidebar" class="w-64 bg-gray-700 text-white px-6 pt-5 pb-24 fixed h-full shadow-xl flex flex-col transform transition-transform duration-300">
       <div class="flex items-center justify-center mb-6">
@@ -136,8 +136,9 @@
       <main class="p-6">
         <!-- Header -->
         <div class="bg-cyan-800 text-white text-center py-4 rounded shadow-md">
-          <h2 class="text-2xl font-semibold">DATA PRODI POLITEKNIK NEGERI CILACAP</h2>
-        </div>
+          <h2 class="text-2xl font-semibold">DATA PROGRAM STUDI PNC</h2>
+        </div><br>
+        <hr style="background-color: rgb(136, 151, 154); height: 1px; border: none;">
 
         <!-- Card -->
         <div class="mt-6 bg-white p-6 rounded-lg shadow-md max-w-5xl mx-auto">
@@ -148,7 +149,7 @@
 
           <div class="overflow-x-auto">
             <table id="prodiTable" class="min-w-full border border-gray-300 text-sm text-center">
-                <thead class="bg-gray-200 text-gray-700">
+                <thead class="bg-cyan-500 text-gray-800">
                 <tr>
                   <th class="border px-4 py-2">Kode Prodi</th>
                   <th class="border px-4 py-2">Nama Prodi</th>
@@ -170,19 +171,69 @@
 
               <tbody>
                 @foreach ($prodi as $p)
-                <tr class="hover:bg-gray-50">
-                  <td class="border px-4 py-2">{{ $p['kode_prodi'] }}</td>
-                  <td class="border px-4 py-2">{{ $p['nama_prodi'] }}</td>
-                  <td class="border px-4 py-2">
+                <tr class="hover:bg-gray-100">
+                  <td class="border border-gray-400 px-4 py-2">{{ $p['kode_prodi'] }}</td>
+                  <td class="border border-gray-400 px-4 py-2">{{ $p['nama_prodi'] }}</td>
+                  <td class="border border-gray-400 px-4 py-2">
                     <a href="/admin/editProdi/{{ $p['kode_prodi'] }}" class="text-gray-500 border border-transparent hover:border-blue-600 hover:text-blue-600 hover:scale-110 transition duration-200 ease-in-out">
                       ✏</a>
-                    <a href="/admin/deleteProdi/{{ $p['kode_prodi'] }}" onclick="return confirm('Yakin ingin menghapus prodi ini?');" class="text-gray-500 border border-transparent hover:border-red-600 hover:text-red-600 hover:scale-110 transition duration-200 ease-in-out"
-                    onclick="return confirm('Apakah Anda yakin ingin menghapus matkul ini?');">🗑️</a>
+                      <form action="{{ url('admin/hapusProdi/' . $p['kode_prodi']) }}" method="POST" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="confirmDelete('{{ $p['kode_prodi'] }}')" 
+                        class="text-gray-500 border border-transparent hover:border-red-600 hover:text-red-600 hover:scale-110 transition duration-200 ease-in-out">🗑</button>
+
+                      </form>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
+            <script>
+              function confirmDelete(kode_prodi) {
+                Swal.fire({
+              title: 'Yakin ingin menghapus?',
+              text: "Data Prodi akan dihapus secara permanen!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#d33',
+              cancelButtonColor: '#3085d6',
+              confirmButtonText: 'Ya, hapus!',
+              cancelButtonText: 'Batal',
+              width: '350px', // Ukuran lebar popup
+              customClass: {
+                popup: 'text-sm',            // Semua font popup kecil
+                title: 'text-base font-semibold', // Judul sedikit lebih besar & tebal
+                htmlContainer: 'text-sm',    // Isi teks biasa
+                confirmButton: 'text-sm px-3 py-1',
+                cancelButton: 'text-sm px-3 py-1'
+              }
+            })
+            .then((result) => {
+                  if (result.isConfirmed) {
+                    // Buat dan submit form secara dinamis
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = `/admin/hapusProdi/${kode_prodi}`;
+
+                    const csrf = document.createElement('input');
+                    csrf.type = 'hidden';
+                    csrf.name = '_token';
+                    csrf.value = '{{ csrf_token() }}';
+
+                    const method = document.createElement('input');
+                    method.type = 'hidden';
+                    method.name = '_method';
+                    method.value = 'DELETE';
+
+                    form.appendChild(csrf);
+                    form.appendChild(method);
+                    document.body.appendChild(form);
+                    form.submit();
+                  }
+                });
+              }
+            </script>
           </div>
         </div>
       </main>

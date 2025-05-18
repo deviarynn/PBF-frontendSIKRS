@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SiKRS - Data Kelas</title>
+  <title>SiKRS - Edit Data Kelas</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     let isDropdownOpen = false;
 
@@ -49,7 +50,7 @@
     });
   </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-300 text-gray-800">
 <div class="flex h-screen overflow-hidden">
 
   <!-- Sidebar -->
@@ -119,14 +120,50 @@
                     <div class="bg-gray-900 text-white w-96 rounded-lg shadow-lg p-6">
                         <h2 class="text-lg font-bold text-center">Edit Data Kelas</h2>
                         <div class="bg-white p-4 rounded-lg mt-4 text-black">
-                            <label class="block font-semibold">Kelas</label>
-                            <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
+                        <form action="{{ route('kelas.update', $kelas['id_kelas']) }}" method="POST">
+                          @csrf
+                          @method('PUT')
+
+                          <div class="mb-4">
+                              <label for="id_kelas" class="block font-medium">ID Kelas</label>
+                              <input type="text" name="id_kelas" value="{{ $kelas['id_kelas'] }}" class="w-full border rounded p-2" readonly>
+                          </div>
+                          <label for="nama_kelas" class="block font-semibold">Kelas:</label>
+                          <input type="text" name="nama_kelas" value="{{ $kelas['nama_kelas'] }}" class="w-full border border-gray-400 rounded p-2 mt-1" required>
+
                             <hr><br>
                             <div class="flex justify-between">
                                 <a href="/admin/dataKelas" class="px-4 py-2 bg-red-700 text-white rounded hover:bg-red-900 transition duration-200">Batal</a>
-                                <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900 transition duration-200">Ubah</button>
+                                <button type="button" id="btnUbah" class="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900 transition duration-200">Ubah</button>
                             </div>
                         </div>
+                        <script>
+                        document.getElementById("btnUbah").addEventListener("click", function (e) {
+                          Swal.fire({
+                            title: 'Yakin ingin mengubah?',
+                            text: "Perubahan data kelas akan disimpan.",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#2563eb',  // Tailwind blue-600
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya, ubah!',
+                            cancelButtonText: 'Batal',
+                            width: '350px',
+                            customClass: {
+                              popup: 'text-sm',
+                              title: 'text-base font-semibold',
+                              htmlContainer: 'text-sm',
+                              confirmButton: 'text-sm px-3 py-1',
+                              cancelButton: 'text-sm px-3 py-1'
+                            }
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              // Submit form secara manual
+                              document.querySelector("form").submit();
+                            }
+                          });
+                        });
+                      </script>
                     </div>
                 </div>
             </main>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SiKRS - Data Prodi</title>
+  <title>SiKRS - Tambah Data Prodi</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     let isDropdownOpen = false;
@@ -53,7 +53,7 @@
     });
   </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-300 text-gray-800">
 
   <div class="flex h-screen overflow-hidden">
 
@@ -137,17 +137,33 @@
                     <div class="bg-gray-900 text-white w-96 rounded-lg shadow-lg p-6">
                         <h2 class="text-lg font-bold text-center">Tambah Data Program Studi</h2>
                         <div class="bg-white p-4 rounded-lg mt-4 text-black">
-                            <form action="{{ route('prodi.store') }}" method="POST">
+                            <form action="{{ route('admin.dataProdi') }}" method="POST">
                             @csrf
+                            {{-- Kode Prodi --}}
                             <label class="block font-semibold">Kode Prodi</label>
-                            <input type="text" name="kode_prodi" id="kode_prodi" value="{{ Session::get('kode_prodi') }}" class="w-full border border-gray-400 rounded p-2 mt-1">
+                            <input type="text" name="kode_prodi" id="kode_prodi"
+                                value="{{ old('kode_prodi', Session::get('kode_prodi')) }}"
+                                class="w-full border rounded p-2 mt-1 @error('kode_prodi') border-red-500 @enderror">
+                            @error('kode_prodi')
+                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                            @enderror
 
-                            <label class="block font-semibold">Prodi</label>
-                            <input type="text" name="nama_prodi" id="nama_prodi" placeholder="Contoh: D3-Teknik Listrik" value="{{ Session::get('nama_prodi') }}" class="w-full border border-gray-400 rounded p-2 mt-1">
+                            {{-- Nama Prodi --}}
+                            <label class="block font-semibold mt-4">Prodi</label>
+                            <input type="text" name="nama_prodi" id="nama_prodi" placeholder="Contoh: D3-Teknik Listrik"
+                                value="{{ old('nama_prodi', Session::get('nama_prodi')) }}"
+                                class="w-full border rounded p-2 mt-1 @error('nama_prodi') border-red-500 @enderror">
+                            @error('nama_prodi')
+                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                            @enderror
+
                             <hr><br>
+
                             <div class="flex justify-center mt-4">
-                                <button class="bg-green-700 text-white py-2 px-4 rounded-lg hover:bg-green-900 transition duration-200">Simpan</button>
+                                <button
+                                    class="bg-green-700 text-white py-2 px-4 rounded-lg hover:bg-green-900 transition duration-200">Simpan</button>
                             </div>
+
                         </div>
                     </div>
                 </div>

@@ -3,133 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiKRS - Dashboard</title>
+    <title>SiKRS - Dashboard Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        function toggleDropdown() {
-            document.getElementById("dropdownMenu").classList.toggle("hidden");
-        }
+        let isDropdownOpen = false;
+
+    function toggleDropdown() {
+      const dropdown = document.getElementById("dropdownMenu");
+      const icon = document.getElementById("dropdownIcon");
+
+      isDropdownOpen = !isDropdownOpen;
+      dropdown.classList.toggle("hidden");
+      dropdown.classList.toggle("opacity-100");
+
+      icon.classList.toggle("rotate-180", isDropdownOpen);
+    }
+
+    document.addEventListener("click", function (event) {
+      const dropdown = document.getElementById("dropdownMenu");
+      const menuButton = document.getElementById("menuButton");
+
+      if (!dropdown.contains(event.target) && !menuButton.contains(event.target)) {
+        isDropdownOpen = false;
+        dropdown.classList.add("hidden");
+        document.getElementById("dropdownIcon").classList.remove("rotate-180");
+      }
+    });
+
+    function confirmLogout() {
+      if (confirm("Apakah Anda yakin ingin keluar?")) {
+        window.location.href = "{{ route('welcome') }}";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleButton = document.getElementById("toggleSidebar");
+      const sidebar = document.getElementById("sidebar");
+      const mainContent = document.querySelector(".ml-64");
+
+      toggleButton.addEventListener("click", function () {
+        sidebar.classList.toggle("-translate-x-full");
+        mainContent.classList.toggle("ml-64");
+        mainContent.classList.toggle("ml-0");
+      });
+    });
     </script>
-</head>
-<body class="bg-gray-100">
+    </head>
+    <body class="bg-gray-300">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <aside id="sidebar" class="w-64 bg-gray-700 text-white px-6 pt-5 pb-24 fixed h-full shadow-xl flex flex-col">
+        <aside id="sidebar" class="w-64 bg-gray-700 text-white px-6 pt-5 pb-24 fixed h-full shadow-xl flex flex-col transform transition-transform duration-300">
             <div class="flex items-center justify-center mb-6">
-              <img src="{{ asset('image/krs.png') }}" alt="Logo SiKRS" class="h-8 mr-2">
-              <h2 class="text-2xl font-bold">SiKRS</h2>
+            <img src="{{ asset('image/krs.png') }}" alt="Logo SiKRS" class="h-8 mr-2">
+            <h2 class="text-2xl font-bold tracking-wide">SiKRS</h2>
             </div>
-            <hr class="border-gray-600 mb-4">        
+            <hr class="border-gray-600 mb-4">
             <ul class="flex-1">
                 <li class="mb-3">
                     <a href="/admin/dashboard" class="block py-2 px-3 rounded hover:bg-cyan-600 transition">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 4v16h18V4H3zm2 12V6h14v10H5z" />
-                      </svg>
-                      Dashboard
+                    </svg>
+                    Dashboard
                     </a>
-                  </li>                
-                  <li class="py-2 relative">
-                    <button id="menuButton" onclick="toggleDropdown()" class="flex items-center space-x-2 w-full text-left py-2 px-3 rounded hover:bg-cyan-600 transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M4 6h16M4 12h16M4 18h7"></path>
-                        </svg>
-                        <span>Menu</span>
-                        <svg id="dropdownIcon" class="w-4 h-4 ml-auto transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill="currentColor" d="M5.23 7.21a.75.75 0 011.06 0L10 10.91l3.71-3.7a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 010-1.06z"/>
-                        </svg>
-                    </button>                    
-                    <ul id="dropdownMenu" class="hidden bg-gray-600 mt-2 rounded">
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataMhs">Data Mahasiswa</a></li>
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataProdi">Data Prodi</a></li>
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataMatkul">Data Matkul</a></li>
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataKelas">Data Kelas</a></li>
-                        <li class="py-2 px-4 hover:bg-gray-500"><a href="/admin/dataKRS">Data KRS</a></li>
-                    </ul>
                 </li>
-                <div class="mt-auto">
-                    <li class="mt-6 pt-4 border-t border-gray-600 text-red-400 list-none">
-                      <a href="#" onclick="confirmLogout()" class="block py-2 px-3 rounded hover:bg-red-600 hover:text-white transition">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path d="M14 5l7 7-7 7M5 13h13"></path>
-                        </svg> Log Out
-                      </a>
-                    </li>
-                  </div>
+
+            <li class="mb-3 relative">
+                <button id="menuButton" onclick="toggleDropdown()" class="flex items-center space-x-2 w-full text-left py-2 px-3 rounded hover:bg-cyan-600 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h7"></path>
+                    </svg>
+                    <span>Menu</span>
+                    <svg id="dropdownIcon" class="w-4 h-4 ml-auto transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill="currentColor" d="M5.23 7.21a.75.75 0 011.06 0L10 10.91l3.71-3.7a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 010-1.06z"/>
+                    </svg>
+                </button>
+                
+
+                <ul id="dropdownMenu" class="hidden absolute left-0 w-full mt-1 bg-gray-600 text-sm rounded shadow-lg opacity-100 z-20">
+                <li><a href="/admin/dataMhs" class="block py-2 px-4 hover:bg-gray-800">Data Mahasiswa</a></li>
+                <li><a href="/admin/dataProdi" class="block py-2 px-4 hover:bg-gray-800">Data Prodi</a></li>
+                <li><a href="/admin/dataMatkul" class="block py-2 px-4 hover:bg-gray-800">Data Matkul</a></li>
+                <li><a href="/admin/dataKelas" class="block py-2 px-4 hover:bg-gray-800">Data Kelas</a></li>
+                <li><a href="/admin/dataKRS" class="block py-2 px-4 hover:bg-gray-800">Data KRS</a></li>
+                </ul>
+            </li>
             </ul>
-            
-            <script>
-                function confirmLogout() {
-                    let confirmAction = confirm("Apakah Anda yakin ingin keluar?");
-                    if (confirmAction) {
-                        window.location.href = "{{ route('welcome') }}"; // Arahkan ke halaman welcome
-                    }
-                }
-            </script>
+
+            <div class="mt-auto">
+            <li class="mt-6 pt-4 border-t border-gray-600 text-red-400 list-none">
+                <a href="#" onclick="confirmLogout()" class="block py-2 px-3 rounded hover:bg-red-600 hover:text-white transition">
+                <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M14 5l7 7-7 7M5 13h13"></path>
+                </svg> Log Out
+                </a>
+            </li>
+            </div>
         </aside>
 
-        <!-- Main Content -->
-        <div class="flex-1 ml-64">
+        <!-- Main content -->
+        <div class="flex-1 ml-64 transition-all duration-300">
             <!-- Navbar -->
-            <nav class="bg-cyan-700 text-white px-6 py-4 flex justify-between items-center shadow-md">
-              <h1 class="text-lg font-semibold">Sistem Manajemen KRS Online</h1>
-              <div class="flex items-center space-x-3">
-                <img src="{{ asset('image/admin.png') }}" class="h-8 w-8 rounded-full" alt="Admin">
-                <span>Admin</span>
-              </div>
+            <nav class="bg-cyan-700 text-white px-6 py-4 flex justify-between items-center shadow-md sticky top-0 z-10">
+            <div class="flex items-center space-x-4">
+                <span id="toggleSidebar" class="text-2xl cursor-pointer">&#9776;</span>
+                <h1 class="text-lg font-bold tracking-wide">Sistem Manajemen KRS Online</h1>
+            </div>
+            <div class="flex items-center space-x-3">
+                <img src="{{ asset('image/admin.png') }}" alt="Admin" class="h-9 w-9 rounded-full border-2 border-white">
+                <span class="font-medium">Admin</span>
+            </div>
             </nav>
 
             <main class="p-6">
-                <div class="bg-cyan-800 text-white p-3 text-center rounded mb-4  shadow-md w-full">
-                    <h2 class="text-2xl font-bold">SELAMAT DATANG, ADMIN !</h2>
-                  </div>
-          
-                  <div class="bg-white p-6 rounded shadow-lg max-w-4xl mx-auto overflow-x-auto">
-                    <div class="flex justify-between items-center mb-4">
-                      <input id="searchInput" onkeyup="searchTable()" type="text" placeholder="Cari kelas..." class="border p-2 rounded w-1/2">
-                    </div>
-                <!-- Selamat Datang Admin -->
-                <hr><br>
-                <div class="flex justify-center items-center h-full">
-                    <div class="grid grid-cols-3 gap-6">
-                        <!-- Data Mahasiswa -->
-                        <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
-                            <p class="font-semibold">Data Mahasiswa</p>
-                            <p class="text-3xl mb-1">🎓</p>
-                            <p class="text-gray-500">{{ $jumlahMahasiswa }}</p>
-                        </div>
-    
-                        <!-- Data Matkul -->
-                        <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
-                            <p class="font-semibold">Data Matkul</p>
-                            <p class="text-3xl mb-1">📚</p>
-                            <p class="text-gray-500">{{ $jumlahMatkul }}</p>
-                        </div>
-                
-                        <!-- Data Prodi -->
-                        <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
-                            <p class="font-semibold">Data Prodi</p>
-                            <p class="text-3xl mb-1">🏫</p>
-                            <p class="text-gray-500">{{ $jumlahProdi }}</p>
-                        </div>
-                
-                        <!-- Data Kelas -->
-                        <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
-                            <p class="font-semibold">Data Kelas</p>
-                            <p class="text-3xl mb-1">🏠</p>
-                            <p class="text-gray-500">{{ $jumlahKelas }}</p>
-                        </div>
-                
-                        <!-- Data KRS -->
-                        <div class="bg-white w-48 h-32 p-4 shadow-md rounded flex flex-col justify-center items-center">
-                            <p class="font-semibold">Data KRS</p>
-                            <p class="text-3xl mb-1">📝</p>
-                            <p class="text-gray-500">{{ $jumlahKrs }}</p>
-                        </div>
-                    </div>
-                </div>                
-            </main>
+            <div class="bg-cyan-800 text-white p-3 text-center rounded mb-4 shadow-md w-full">
+                <h2 class="text-2xl font-bold">SELAMAT DATANG, ADMIN !</h2>
+            </div>
+            <hr style="background-color: rgb(136, 151, 154); height: 1px; border: none;"><br>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-min">
+            <!-- Data Mahasiswa -->
+            <div class="bg-white hover:bg-cyan-100 transition transform hover:-translate-y-1 duration-300 w-full p-6 shadow-lg rounded row-span-1">
+                <p class="font-semibold text-gray-700">Data Mahasiswa</p>
+                <p class="text-4xl mb-2">🎓</p>
+                <p class="text-cyan-700 text-xl font-bold">{{ $jumlahMahasiswa }}</p>
+                <p class="mt-2 text-sm text-gray-500">Data mahasiswa aktif</p>
+
+            </div>
+
+            <!-- Data Matkul (taller card) -->
+            <div class="bg-white hover:bg-amber-100 transition transform hover:-translate-y-1 duration-300 w-full p-6 shadow-lg rounded row-span-2">
+                <p class="font-semibold text-gray-700">Data Matkul</p>
+                <p class="text-4xl mb-2">📚</p>
+                <p class="text-amber-700 text-2xl font-bold">{{ $jumlahMatkul }}</p>
+                <p class="mt-2 text-sm text-gray-500">Total matkul aktif</p>
+            </div>
+
+            <!-- Data Prodi -->
+            <div class="bg-white hover:bg-green-100 transition transform hover:-translate-y-1 duration-300 w-full p-6 shadow-lg rounded row-span-1">
+                <p class="font-semibold text-gray-700">Data Prodi</p>
+                <p class="text-4xl mb-2">🏫</p>
+                <p class="text-green-700 text-xl font-bold">{{ $jumlahProdi }}</p>
+                <p class="mt-2 text-sm text-gray-500">Prodi di Politeknik Negeri Cilacap</p>
+
+            </div>
+
+            <!-- Data Kelas -->
+            <div class="bg-white hover:bg-purple-100 transition transform hover:-translate-y-1 duration-300 w-full p-6 shadow-lg rounded row-span-1">
+                <p class="font-semibold text-gray-700">Data Kelas</p>
+                <p class="text-4xl mb-2">🏠</p>
+                <p class="text-purple-700 text-xl font-bold">{{ $jumlahKelas }}</p>
+                <p class="mt-2 text-sm text-gray-500">Data seluruh kelas</p>
+            </div>
+
+            <!-- Data KRS (taller card) -->
+            <div class="bg-white hover:bg-pink-100 transition transform hover:-translate-y-1 duration-300 w-full p-6 shadow-lg rounded row-span-2">
+                <p class="font-semibold text-gray-700">Data KRS</p>
+                <p class="text-4xl mb-2">📝</p>
+                <p class="text-pink-700 text-2xl font-bold">{{ $jumlahKrs }}</p>
+                <p class="mt-2 text-sm text-gray-500">KRS mahasiswa semester ini</p>
+            </div>
         </div>
-    </div>
-</body>
+
+        </main>
+
+                </div>
+            </div>
+        </body>
 </html>

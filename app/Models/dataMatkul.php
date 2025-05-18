@@ -8,7 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class dataMatkul extends Model
 {
     use HasFactory;
-    protected $fillable = ['kode_matkul', 'nama_matkul', 'sks', 'semester'];
     protected $table = 'matkul';
-    public $timestamps = false;
 }

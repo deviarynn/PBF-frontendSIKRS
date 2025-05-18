@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SiKRS - Data Mahasiswa</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     let isDropdownOpen = false;
 
@@ -53,10 +54,9 @@
     });
   </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-300 text-gray-800">
 
-  <div class="flex h-screen overflow-hidden">
-
+<div class="flex min-h-screen overflow-x-hidden">
     <!-- Sidebar -->
     <aside id="sidebar" class="w-64 bg-gray-700 text-white px-6 pt-5 pb-24 fixed h-full shadow-xl flex flex-col transform transition-transform duration-300">
       <div class="flex items-center justify-center mb-6">
@@ -137,7 +137,8 @@
         <!-- Header -->
         <div class="bg-cyan-800 text-white text-center py-4 rounded shadow-md">
           <h2 class="text-2xl font-semibold">DATA MAHASISWA POLITEKNIK NEGERI CILACAP</h2>
-        </div>
+        </div><br>
+        <hr style="background-color: rgb(136, 151, 154); height: 1px; border: none;">
 
         <!-- Card -->
         <div class="mt-6 bg-white p-6 rounded-lg shadow-md max-w-5xl mx-auto">
@@ -147,8 +148,8 @@
         </div>
 
           <div class="overflow-x-auto">
-            <table id="mahasiswaTable" class="min-w-full border border-gray-300 text-sm text-center">
-                <thead class="bg-gray-200 text-gray-700">
+            <table id="mahasiswaTable" class="min-w-full order border-gray-300 text-sm text-center">
+                <thead class="bg-cyan-500 text-gray-800">
                 <tr>
                     <th class="border px-4 py-2">NPM</th>
                     <th class="border px-4 py-2">Nama Mahasiswa</th>
@@ -171,20 +172,69 @@
 
                 <tbody>
                     @foreach ($mahasiswa as $mhs)                                
-                    <tr class="text-center">
+                    <tr class="hover:bg-gray-100">
                         <td class="border border-gray-400 px-4 py-2">{{ $mhs['npm'] }}</td>
                         <td class="border border-gray-400 px-4 py-2">{{ $mhs['nama_mahasiswa'] }}</td>
                         <td class="border border-gray-400 px-4 py-2">{{ $mhs['nama_kelas'] }}</td>
                         <td class="border border-gray-400 px-4 py-2">{{ $mhs['nama_prodi'] }}</td>
                         <td class="border border-gray-400 px-4 py-2">
-                            <a href="/admin/editMhs/{{ $mhs['npm'] }}" class="text-gray-500 border border-transparent hover:border-blue-600 hover:text-blue-600 hover:scale-110 transition duration-200 ease-in-out">✏</a>
-                            <a href="/admin/deleteProdi/{{ $mhs['npm'] }}" class="text-gray-500 border border-transparent hover:border-red-600 hover:text-red-600 hover:scale-110 transition duration-200 ease-in-out"
-                            onclick="return confirm('Apakah Anda yakin ingin menghapus matkul ini?');">🗑</a>
-                        </td>
+                        <a href="/admin/editMhs/{{ $mhs['npm'] }}" class="text-gray-500 border border-transparent hover:border-blue-600 hover:text-blue-600 hover:scale-110 transition duration-200 ease-in-out">✏</a>
+                        <form action="{{ url('admin/hapusMhs/' . $mhs['npm']) }}" method="POST" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="confirmDelete({{ $mhs['npm'] }})" 
+                      class="text-gray-500 border border-transparent hover:border-red-600 hover:text-red-600 hover:scale-110 transition duration-200 ease-in-out">🗑</button>
+                      </form>                        </td>
                     </tr>
                     @endforeach
                 </tbody>
               </table>
+              <script>
+              function confirmDelete(npm) {
+                Swal.fire({
+              title: 'Yakin ingin menghapus?',
+              text: "Data Mahasiswa akan dihapus secara permanen!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#d33',
+              cancelButtonColor: '#3085d6',
+              confirmButtonText: 'Ya, hapus!',
+              cancelButtonText: 'Batal',
+              width: '350px', // Ukuran lebar popup
+              customClass: {
+                popup: 'text-sm',            // Semua font popup kecil
+                title: 'text-base font-semibold', // Judul sedikit lebih besar & tebal
+                htmlContainer: 'text-sm',    // Isi teks biasa
+                confirmButton: 'text-sm px-3 py-1',
+                cancelButton: 'text-sm px-3 py-1'
+              }
+            })
+            .then((result) => {
+                  if (result.isConfirmed) {
+                    // Buat dan submit form secara dinamis
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = `/admin/hapusMhs/${npm}`;
+
+                    const csrf = document.createElement('input');
+                    csrf.type = 'hidden';
+                    csrf.name = '_token';
+                    csrf.value = '{{ csrf_token() }}';
+
+                    const method = document.createElement('input');
+                    method.type = 'hidden';
+                    method.name = '_method';
+                    method.value = 'DELETE';
+
+                    form.appendChild(csrf);
+                    form.appendChild(method);
+                    document.body.appendChild(form);
+                    form.submit();
+                  }
+                });
+              }
+            </script>
+
             </div>
           </div>
         </main>

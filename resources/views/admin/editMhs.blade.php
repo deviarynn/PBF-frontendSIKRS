@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SiKRS - Data Mahasiswa</title>
+  <title>SiKRS - Edit Data Mahasiswa</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <script>
     let isDropdownOpen = false;
 
@@ -53,7 +55,7 @@
     });
   </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-300 text-gray-800">
 
   <div class="flex h-screen overflow-hidden">
 
@@ -127,23 +129,82 @@
                 <div class="bg-gray-900 text-white w-96 rounded-lg shadow-lg p-6">
                     <h2 class="text-lg font-bold text-center">Edit Data Mahasiswa</h2>
                     <div class="bg-white p-4 rounded-lg mt-4 text-black">
-                        <label class="block font-semibold">NPM</label>
-                        <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
+                      <form action="{{ route('mahasiswa.update', $mahasiswa['npm']) }}" method="POST">
+                        @csrf
+                        @method('PUT')
 
-                        <label class="block font-semibold">Nama</label>
-                        <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
+                        {{-- NPM (readonly) --}}
+                <div class="mb-4">
+                    <label for="npm" class="block font-medium">NPM</label>
+                    <input type="text" name="npm" value="{{ $mahasiswa['npm'] }}" class="w-full border rounded p-2" readonly>
+                </div>
 
-                        <label class="block font-semibold">Kelas</label>
-                        <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
+                {{-- Nama Mahasiswa --}}
+                <div class="mb-4">
+                    <label for="nama_mahasiswa" class="block font-medium">Nama Mahasiswa</label>
+                    <input type="text" name="nama_mahasiswa" value="{{ $mahasiswa['nama_mahasiswa'] }}" class="w-full border rounded p-2" required>
+                </div>
 
-                        <label class="block font-semibold">Prodi</label>
-                        <input type="text" placeholder="pilih prodi" class="w-full border border-gray-400 rounded p-2 mt-1">
+        {{-- Dropdown Kelas --}}
+                <div class="mb-4">
+                    <label for="id_kelas" class="block font-medium">Kelas</label>
+                    <select name="id_kelas" class="w-full border rounded p-2" required>
+                        @foreach($kelas as $k)
+                            <option value="{{ $k['id_kelas'] }}"
+                                {{ (string)$mahasiswa['id_kelas'] === (string)$k['id_kelas'] ? 'selected' : '' }}>
+                                {{ $k['nama_kelas'] }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                    {{-- Dropdown Prodi --}}
+                    <div class="mb-4">
+                        <label for="kode_prodi" class="block font-medium">Program Studi</label>
+                        <select name="kode_prodi" class="w-full border rounded p-2" required>
+                            @foreach($prodi as $p)
+                                <option value="{{ $p['kode_prodi'] }}"
+                                    {{ (string)$mahasiswa['kode_prodi'] === (string)$p['kode_prodi'] ? 'selected' : '' }}>
+                                    {{ $p['nama_prodi'] }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                         <hr><br>
+
+      
                         <div class="flex justify-between">
                             <a href="/admin/dataMhs" class="px-4 py-2 bg-red-700 text-white rounded hover:bg-red-900 transition duration-200">Batal</a>
-                            <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900 transition duration-200">Ubah</button>
+                            <button type="button" id="btnUbah" class="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900 transition duration-200">Ubah</button>
                         </div>
                     </div>
+                    <script>
+                        document.getElementById("btnUbah").addEventListener("click", function (e) {
+                          Swal.fire({
+                            title: 'Yakin ingin mengubah?',
+                            text: "Perubahan data Mahasiswa akan disimpan.",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#2563eb',  // Tailwind blue-600
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya, ubah!',
+                            cancelButtonText: 'Batal',
+                            width: '350px',
+                            customClass: {
+                              popup: 'text-sm',
+                              title: 'text-base font-semibold',
+                              htmlContainer: 'text-sm',
+                              confirmButton: 'text-sm px-3 py-1',
+                              cancelButton: 'text-sm px-3 py-1'
+                            }
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              // Submit form secara manual
+                              document.querySelector("form").submit();
+                            }
+                          });
+                        });
+                      </script>
                 </div>
             </div>
         </main>

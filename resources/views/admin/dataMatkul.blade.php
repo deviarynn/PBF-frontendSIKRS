@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SiKRS - Data Matkul</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <script>
     let isDropdownOpen = false;
 
@@ -49,9 +51,8 @@
     });
   </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
-<div class="flex h-screen overflow-hidden">
-
+<body class="bg-gray-300 text-gray-800">
+<div class="flex min-h-screen overflow-x-hidden">
   <!-- Sidebar -->
   <aside id="sidebar" class="w-64 bg-gray-700 text-white px-6 pt-5 pb-24 fixed h-full shadow-xl flex flex-col transform transition-transform duration-300">
     <div class="flex items-center justify-center mb-6">
@@ -82,11 +83,11 @@
         
 
         <ul id="dropdownMenu" class="hidden absolute left-0 w-full mt-1 bg-gray-600 text-sm rounded shadow-lg opacity-100 z-20">
-          <li><a href="/admin/dataMhs" class="block py-2 px-4 hover:bg-gray-600">Data Mahasiswa</a></li>
-          <li><a href="/admin/dataProdi" class="block py-2 px-4 hover:bg-gray-600">Data Prodi</a></li>
-          <li><a href="/admin/dataMatkul" class="block py-2 px-4 hover:bg-gray-600 bg-cyan-700 text-white font-semibold">Data Matkul</a></li>
-          <li><a href="/admin/dataKelas" class="block py-2 px-4 hover:bg-gray-600">Data Kelas</a></li>
-          <li><a href="/admin/dataKRS" class="block py-2 px-4 hover:bg-gray-600">Data KRS</a></li>
+          <li><a href="/admin/dataMhs" class="block py-2 px-4 hover:bg-gray-800">Data Mahasiswa</a></li>
+          <li><a href="/admin/dataProdi" class="block py-2 px-4 hover:bg-gray-800">Data Prodi</a></li>
+          <li><a href="/admin/dataMatkul" class="block py-2 px-4 hover:bg-gray-800 bg-cyan-700 text-white font-semibold">Data Matkul</a></li>
+          <li><a href="/admin/dataKelas" class="block py-2 px-4 hover:bg-gray-800">Data Kelas</a></li>
+          <li><a href="/admin/dataKRS" class="block py-2 px-4 hover:bg-gray-800">Data KRS</a></li>
         </ul>
       </li>
     </ul>
@@ -120,8 +121,10 @@
     <main class="p-6">
       <div class="bg-cyan-800 text-white text-center py-4 rounded shadow-md">
         <h2 class="text-2xl font-semibold">DATA MATA KULIAH</h2>
-      </div>
+      </div><br>
+      <hr style="background-color: rgb(136, 151, 154); height: 1px; border: none;">
 
+      
       <div class="mt-6 bg-white p-6 rounded-lg shadow-md max-w-5xl mx-auto">
         <div class="flex justify-between items-center mb-4">
           <a href="/admin/tambahMatkul" class="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded transition">Tambah</a>
@@ -129,13 +132,13 @@
         </div>
 
         <div class="overflow-x-auto">
-          <table id="matkulTable" class="w-full mt-4 border-collapse border border-gray-300 text-center">
-            <thead class="bg-gray-200">
+          <table id="matkulTable" class="min-w-full border border-gray-300 text-sm text-center">
+              <thead class="bg-cyan-500 text-gray-800">
               <tr>
                 <th class="border px-4 py-2">Kode Matkul</th>
                 <th class="border px-4 py-2">Nama Matkul</th>
-                <th class="border px-4 py-2">Semester</th>
                 <th class="border px-4 py-2">SKS</th>
+                <th class="border px-4 py-2">Semester</th>
                 <th class="border px-4 py-2">Aksi</th>
               </tr>
             </thead>
@@ -152,23 +155,21 @@
                           </script>
                         <tbody>
                             @foreach ($matkul as $m)                                
-                            <tr class="text-center">
+                            <tr class="hover:bg-gray-100 text-center">
                                 <td class="border border-gray-400 px-4 py-2">{{ $m['kode_matkul'] }}</td>
                                 <td class="border border-gray-400 px-4 py-2">{{ $m['nama_matkul'] }}</td>
                                 <td class="border border-gray-400 px-4 py-2">{{ $m['sks'] }}</td>
                                 <td class="border border-gray-400 px-4 py-2">{{ $m['semester'] }}</td>                                
                                 <td class="border border-gray-400 px-4 py-2 text-center">
-                                    <a href="{{ route('admin.editMatkul', ['kode_matkul' => $m['kode_matkul']]) }}"  class="text-gray-500 border border-transparent hover:border-blue-600 hover:text-blue-600 hover:scale-110 transition duration-200 ease-in-out">
-                                        ✏</a>
-                                    <form action="{{ route('admin.hapusMatkul', ['kode_matkul' => $m['kode_matkul']]) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                    <button type="submit" class="text-gray-500 border border-transparent hover:border-red-600 hover:text-red-600 hover:scale-110 transition duration-200 ease-in-out"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus matkul ini?');">
-                                        🗑
-                                    </button>
+                                  <a href="/admin/editMatkul/{{ $m['kode_matkul'] }}" class="text-gray-500 border border-transparent hover:border-blue-600 hover:text-blue-600 hover:scale-110 transition duration-200 ease-in-out">
+                                      ✏</a>
+                                  <form action="{{ url('admin/hapusMatkul/' . $m['kode_matkul']) }}" method="POST" class="inline">
+                                      @csrf
+                                      @method('DELETE')
+                                    <button type="button" onclick="confirmDelete('{{ $m['kode_matkul'] }}')" 
+                                    class="text-gray-500 border border-transparent hover:border-red-600 hover:text-red-600 hover:scale-110 transition duration-200 ease-in-out">🗑</button>
 
-                                    </form>
+                                  </form>
                                     
                                     
                                 </td>
@@ -177,6 +178,51 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <script>
+              function confirmDelete(kode_matkul) {
+                Swal.fire({
+              title: 'Yakin ingin menghapus?',
+              text: "Data Matkul akan dihapus secara permanen!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#d33',
+              cancelButtonColor: '#3085d6',
+              confirmButtonText: 'Ya, hapus!',
+              cancelButtonText: 'Batal',
+              width: '350px', // Ukuran lebar popup
+              customClass: {
+                popup: 'text-sm',            // Semua font popup kecil
+                title: 'text-base font-semibold', // Judul sedikit lebih besar & tebal
+                htmlContainer: 'text-sm',    // Isi teks biasa
+                confirmButton: 'text-sm px-3 py-1',
+                cancelButton: 'text-sm px-3 py-1'
+              }
+            })
+            .then((result) => {
+                  if (result.isConfirmed) {
+                    // Buat dan submit form secara dinamis
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = `/admin/hapusMatkul/${kode_matkul}`;
+
+                    const csrf = document.createElement('input');
+                    csrf.type = 'hidden';
+                    csrf.name = '_token';
+                    csrf.value = '{{ csrf_token() }}';
+
+                    const method = document.createElement('input');
+                    method.type = 'hidden';
+                    method.name = '_method';
+                    method.value = 'DELETE';
+
+                    form.appendChild(csrf);
+                    form.appendChild(method);
+                    document.body.appendChild(form);
+                    form.submit();
+                  }
+                });
+              }
+            </script>
                 </div>
             </main>
         </div>

@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SiKRS - Data Matkul</title>
+  <title>SiKRS - Edit Data Matkul</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <script>
     let isDropdownOpen = false;
 
@@ -49,7 +51,7 @@
     });
   </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-300 text-gray-800">
 <div class="flex h-screen overflow-hidden">
 
   <!-- Sidebar -->
@@ -121,28 +123,65 @@
                     <div class="bg-gray-900 text-white w-96 rounded-lg shadow-lg p-6">
                         <h2 class="text-lg font-bold text-center">Edit Data Matkul</h2>
                         <div class="bg-white p-4 rounded-lg mt-4 text-black">
-                            <form action="{{ url('admin/updateMatkul/' . $matkul[0]['kode_matkul']) }}" method="POST">
-                                @csrf
-                                @method('PUT')  
+                            <form action="{{ route('matkul.update', $matkul['kode_matkul']) }}" method="POST">
+                              @csrf
+                              @method('PUT')
                             
                                     <!-- Tambahkan input hidden untuk kode_matkul -->
-                                <input type="hidden" name="kode_matkul" value="{{ $matkul[0]['kode_matkul'] }}">
+                            <input type="hidden" name="kode_matkul_lama" value="{{ $matkul['kode_matkul'] }}">
+                            <div class="mb-4">
+                                <label for="kode_matkul" class="block font-medium">Kode Matkul</label>
+                                <input type="text" name="kode_matkul" value="{{ $matkul['kode_matkul'] }}" class="w-full border rounded p-2" readonly>
+                            </div>
 
-                                <label for="nama_matkul" class="block font-semibold">Mata Kuliah:</label>
-                                <input type="text" name="nama_matkul" value="{{ $matkul[0]['nama_matkul'] }}" class="w-full border border-gray-400 rounded p-2 mt-1" required><br>
+                            <div class="mb-4">
+                                <label for="nama_matkul" class="block font-medium">Mata Matkul</label>
+                                <input type="text" name="nama_matkul" value="{{ $matkul['nama_matkul'] }}" class="w-full border rounded p-2">
+                            </div>
 
-                                <label for="sks" class="block font-semibold">SKS:</label>
-                                <input type="text" name="sks" value="{{ $matkul[0]['sks'] }}" class="w-full border border-gray-400 rounded p-2 mt-1" required><br>
+                            <div class="mb-4">
+                                <label for="sks" class="block font-medium">SKS</label>
+                                <input type="text" name="sks" value="{{ $matkul['sks'] }}" class="w-full border rounded p-2">
+                            </div>
 
-                                <label for="semester" class="block font-semibold">Semester:</label>
-                                <input type="text" name="semester" value="{{ $matkul[0]['semester'] }}" class="w-full border border-gray-400 rounded p-2 mt-1" required><br>
+                            <div class="mb-4">
+                                <label for="semester" class="block font-medium">Semester</label>
+                                <input type="text" name="semester" value="{{ $matkul['semester'] }}" class="w-full border rounded p-2">
+                            </div>
 
                             <hr><br>
                             <div class="flex justify-between">
                                 <a href="/admin/dataMatkul" class="px-4 py-2 bg-red-700 text-white rounded hover:bg-red-900 transition duration-200">Batal</a>
-                                <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900 transition duration-200">Ubah</button>
+                                <button type="button" id="btnUbah" class="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900 transition duration-200">Ubah</button>
                             </div>
                             </form>
+                            <script>
+                        document.getElementById("btnUbah").addEventListener("click", function (e) {
+                          Swal.fire({
+                            title: 'Yakin ingin mengubah?',
+                            text: "Perubahan data Matkul akan disimpan.",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#2563eb',  // Tailwind blue-600
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya, ubah!',
+                            cancelButtonText: 'Batal',
+                            width: '350px',
+                            customClass: {
+                              popup: 'text-sm',
+                              title: 'text-base font-semibold',
+                              htmlContainer: 'text-sm',
+                              confirmButton: 'text-sm px-3 py-1',
+                              cancelButton: 'text-sm px-3 py-1'
+                            }
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              // Submit form secara manual
+                              document.querySelector("form").submit();
+                            }
+                          });
+                        });
+                      </script>
                         </div>
                     </div>
                 </div>

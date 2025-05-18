@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiKRS - Data Matkul</title>
+    <title>SiKRS - Dashboard Mahasiswa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         let isDropdownOpen = false;
@@ -46,13 +46,13 @@
         }
       </script>      
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-300">
     <div class="flex h-screen">
         <!-- Sidebar -->
         <aside id="sidebar" class="w-64 bg-gray-700 text-white px-6 pt-5 pb-24 fixed h-full shadow-xl flex flex-col">
             <div class="flex items-center justify-center mb-6">
-              <img src="{{ asset('image/krs.png') }}" alt="Logo SiKRS" class="h-8 mr-2">
-              <h2 class="text-2xl font-bold">SiKRS</h2>
+            <img src="{{ asset('image/krs.png') }}" alt="Logo SiKRS" class="h-8 mr-2">
+            <h2 class="text-2xl font-bold tracking-wide">SiKRS</h2>
             </div>
             <hr class="border-gray-600 mb-4">
           
@@ -96,10 +96,10 @@
         <!-- Main Content -->
         <div class="flex-1 ml-64">
             <!-- Navbar -->
-            <nav class="bg-cyan-700 text-white p-4 flex justify-between items-center shadow-md w-full">
+                <nav class="bg-cyan-700 text-white px-6 py-4 flex justify-between items-center shadow-md sticky top-0 z-10">
                 <div class="flex items-center space-x-4">
                     <span id="toggleSidebar" class="text-2xl cursor-pointer">&#9776;</span>
-                    <h1 class="text-lg font-bold">Sistem Manajemen KRS Online</h1>
+                    <h1 class="text-lg font-bold tracking-wide">Sistem Manajemen KRS Online</h1>
                 </div>
                 <div class="flex items-center space-x-3">
                     <img src="{{ asset('image/mhs.png') }}" alt="👨‍💼" class="h-8 w-8 rounded-full">
@@ -109,19 +109,21 @@
 
             <main class="p-6">
                 <!-- Selamat Datang Admin -->
-                <div class="bg-cyan-700 text-white p-3 text-center rounded mb-4  shadow-md w-full">
+                <div class="bg-cyan-800 text-white p-3 text-center rounded mb-4  shadow-md w-full">
                 <h2 class="text-2xl font-bold">SELAMAT DATANG, MAHASISWA !</h2>
-                </div><hr><br>
+                </div>
+                <hr style="background-color: rgb(136, 151, 154); height: 1px; border: none;"><br>
+
+                <br>
                 
                 <!-- Card -->
             <div class="flex justify-center mt-15">
                 <div class="bg-white p-6 rounded-lg shadow-md w-1/2 text-center">
                     <p class="text-lg font-semibold">Awal semester telah dimulai.</p>
-                    <p class="text-lg">Silahkan isi KRS anda!</p>
+                    <p class="text-lg">Silahkan Lihat KRS anda!</p>
 
                     <div class="mt-4 flex justify-center space-x-4">
                         {{-- <a href="/mahasiswa/dataMatkul" class="text-blue-600 hover:underline">Lihat Data Matkul</a> --}}
-                        <a href="/mahasiswa/tambahKRS" class="text-blue-600 hover:underline">Isi KRS</a>
                         <a href="/mahasiswa/dataKRS" class="text-blue-600 hover:underline">Lihat Data KRS</a>
 
                     </div>

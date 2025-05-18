@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SiKRS - Data Mahasiswa</title>
+  <title>SiKRS - Tambah Data Mahasiswa</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     let isDropdownOpen = false;
@@ -53,7 +53,7 @@
     });
   </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-300 text-gray-800">
 
   <div class="flex h-screen overflow-hidden">
 
@@ -127,17 +127,55 @@
                 <div class="bg-gray-900 text-white w-96 rounded-lg shadow-lg p-6">
                     <h2 class="text-lg font-bold text-center">Tambah Data Mahasiswa</h2>
                     <div class="bg-white p-4 rounded-lg mt-4 text-black">
+                      <form action="{{ route('admin.dataMhs') }}" method="POST">
+                        @csrf
+                        {{-- NPM --}}
                         <label class="block font-semibold">NPM</label>
-                        <input type="text" placeholder="masukan npm..." class="w-full border border-gray-400 rounded p-2 mt-1">
+                        <input type="text" name="npm" id="npm" placeholder="Masukan NPM Anda"
+                            value="{{ old('npm', Session::get('npm')) }}"
+                            class="w-full border rounded p-2 mt-1 @error('npm') border-red-500 @enderror">
+                        @error('npm')
+                            <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                        @enderror
 
-                        <label class="block font-semibold">Nama</label>
-                        <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
+                        {{-- Nama --}}
+                        <label class="block font-semibold mt-4">Nama</label>
+                        <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" placeholder=""
+                            value="{{ old('nama_mahasiswa', Session::get('nama_mahasiswa')) }}"
+                            class="w-full border rounded p-2 mt-1 @error('nama_mahasiswa') border-red-500 @enderror">
+                        @error('nama_mahasiswa')
+                            <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                        @enderror
 
-                        <label class="block font-semibold">Kelas</label>
-                        <input type="text" placeholder="" class="w-full border border-gray-400 rounded p-2 mt-1">
+                        {{-- Kelas --}}
+                        <label for="id_kelas" class="block font-semibold mt-4">Kelas</label>
+                        <select name="id_kelas" id="id_kelas"
+                            class="w-full border rounded p-2 @error('id_kelas') border-red-500 @enderror">
+                            <option value="">Pilih Kelas</option>
+                            @foreach($kelas as $k)
+                                <option value="{{ $k['id_kelas'] }}" {{ old('id_kelas') == $k['id_kelas'] ? 'selected' : '' }}>
+                                    {{ $k['nama_kelas'] }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('id_kelas')
+                            <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                        @enderror
 
-                        <label class="block font-semibold">Prodi</label>
-                        <input type="text" placeholder="pilih prodi" class="w-full border border-gray-400 rounded p-2 mt-1">
+                        {{-- Prodi --}}
+                        <label for="kode_prodi" class="block font-semibold mt-4">Program Studi</label>
+                        <select name="kode_prodi" id="kode_prodi"
+                            class="w-full border rounded p-2 @error('kode_prodi') border-red-500 @enderror">
+                            <option value="">Pilih Prodi</option>
+                            @foreach($prodi as $p)
+                                <option value="{{ $p['kode_prodi'] }}" {{ old('kode_prodi') == $p['kode_prodi'] ? 'selected' : '' }}>
+                                    {{ $p['nama_prodi'] }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('kode_prodi')
+                            <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                        @enderror
 
                         <div class="flex justify-center mt-4">
                             <button class="bg-green-700 text-white py-2 px-4 rounded-lg hover:bg-green-900 transition duration-200">

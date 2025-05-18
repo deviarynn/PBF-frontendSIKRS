@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiKRS - Data Matkul</title>
+    <title>SiKRS - Data KRS Mahasiswa PNC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         let isDropdownOpen = false;
@@ -46,8 +46,8 @@
         }
       </script>      
 </head>
-<body class="bg-gray-100">
-    <div class="flex h-screen">
+    <body class="bg-gray-300">
+        <div class="flex h-screen">
         <!-- Sidebar -->
         <aside id="sidebar" class="w-64 bg-gray-700 text-white px-6 pt-5 pb-24 fixed h-full shadow-xl flex flex-col">
             <div class="flex items-center justify-center mb-6">
@@ -77,7 +77,7 @@
                   </svg>
                 </button>
                 <ul id="dropdownMenu" class="hidden absolute left-0 w-full mt-1 bg-gray-600 rounded shadow-lg z-20">
-                  <li><a href="/admin/dataKRS" class="block py-2 px-4 hover:bg-gray-700 bg-cyan-700 text-white font-semibold">Data KRS</a></li>
+                  <li><a href="/mahasiswa/dataKRS" class="block py-2 px-4 hover:bg-gray-800 bg-cyan-700 text-white font-semibold">Data KRS</a></li>
                 </ul>
               </li>
             </ul>
@@ -102,8 +102,8 @@
                     <h1 class="text-lg font-bold">Sistem Manajemen KRS Online</h1>
                 </div>
                 <div class="flex items-center space-x-3">
-                    <img src="{{ asset('image/admin.png') }}" alt="👨‍💼" class="h-8 w-8 rounded-full">
-                    <span>Admin</span>
+                    <img src="{{ asset('image/mhs.png') }}" alt="👨‍💼" class="h-8 w-8 rounded-full">
+                    <span>Mahasiswa</span>
                 </div>
             </nav>
 
@@ -112,18 +112,17 @@
                 <div class="bg-cyan-700 text-white p-3 text-center rounded mb-4 shadow-md w-full">
                     <h2 class="text-2xl font-bold">KRS MAHASISWA POLITEKNIK NEGERI CILACAP</h2>
                 </div>
-                <hr><br>
+                <hr style="background-color: rgb(136, 151, 154); height: 1px; border: none;"><br>
+
 
                 <!-- Main Content -->
-                <div class="bg-white shadow-md rounded p-4 max-w-4xl mx-auto overflow-x-auto">
-                    <div class="flex justify-between items-center mt-4">
-                        <a href="/mahasiswa/tambahKRS" class="bg-green-900 text-white px-4 py-2 rounded">
-                            Tambah
-                        </a>                        
+                <div class="bg-white shadow-md rounded p-4 max-w-5xl mx-auto overflow-x-auto">
+                    <div class="flex justify-between items-center mt-4"> 
+                        <input type="text" id="searchInput" placeholder="Cari NPM atau lainnya..." class="border border-gray-300 rounded px-3 py-2 mb-3 focus:outline-none focus:ring focus:border-cyan-400">
                     </div>
-                    <table class="w-full mt-4 border-collapse border border-gray-300 text-center">
+                    <table id="krsTable" class="w-full mt-4 border-collapse border border-gray-300 text-center">
                         <thead>
-                            <tr class="bg-gray-200">
+                            <tr class="bg-cyan-500">
                                 <th class="border p-2">No.</th>
                                 <th class="border p-2">NPM</th>
                                 <th class="border p-2">Nama</th>
@@ -132,36 +131,53 @@
                                 <th class="border p-2">Matkul</th>
                                 <th class="border p-2">SKS</th>
                                 <th class="border p-2">Semester</th>
-                                <th class="border p-2">AKSI</th>
-
+                                <th class="border p-2">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($krs as $kr)                                
-                            <tr>
-                                <td class="border border-gray-400 px-4 py-2">{{ $kr['id_krs'] }}</td>
-                                <td class="border border-gray-400 px-4 py-2">{{ $kr['npm'] }}</td>
-                                <td class="border border-gray-400 px-4 py-2">{{ $kr['nama_mahasiswa'] }}</td>
-                                <td class="border border-gray-400 px-4 py-2">{{ $kr['nama_kelas'] }}</td>
-                                <td class="border border-gray-400 px-4 py-2">{{ $kr['nama_prodi'] }}</td>
-                                <td class="border border-gray-400 px-4 py-2">{{ $kr['nama_matkul'] }}</td>
-                                <td class="border border-gray-400 px-4 py-2">{{ $kr['sks'] }}</td>
-                                <td class="border border-gray-400 px-4 py-2">{{ $kr['semester'] }}</td>
-
-                                <td class="border border-gray-400 px-4 py-2 text-center">
-                                    <a href="/admin/editKrs/{{ $kr['id_krs'] }}" class="text-blue-500">✏</a>
-                                    <a href="/admin/deleteKrs/{{ $kr['id_krs'] }}" class="text-red-500 ml-2">🗑</a>
+                        <script>
+                            document.getElementById("searchInput").addEventListener("keyup", function () {
+                              const searchTerm = this.value.toLowerCase();
+                              const rows = document.querySelectorAll("#krsTable tbody tr");
+                          
+                              rows.forEach(row => {
+                                const rowText = row.innerText.toLowerCase();
+                                row.style.display = rowText.includes(searchTerm) ? "" : "none";
+                              });
+                            });
+                          </script>
+                        <tbody class="text-sm">
+                            @foreach ($krs as $index => $kr)                                
+                            <tr class="bg-gray-100 font-semibold">
+                                <td class="border px-4 py-2">{{ $index + 1 }}</td>
+                                <td class="border px-4 py-2">{{ $kr['npm'] }}</td>
+                                <td class="border px-4 py-2">{{ $kr['nama_mahasiswa'] }}</td>
+                                <td class="border px-4 py-2">{{ $kr['nama_kelas'] }}</td>
+                                <td class="border px-4 py-2">{{ $kr['nama_prodi'] }}</td>
+                                <td colspan="3" class="border px-4 py-2 text-left">Paket Matkul:</td>
+                                <td class="border px-4 py-2 text-center">
+                                    <a href="/mahasiswa/cetakKRS/{{ $kr['npm'] }}" class="text-blue-500">Cetak</a>
                                 </td>
-                            </tr> 
+                            </tr>
+                            @foreach ($kr['matkuls'] as $matkul)
+                            <tr>
+                                <td colspan="5" class="border px-4 py-2 text-right text-sm text-gray-500">↳</td>
+                                <td class="border px-4 py-2">{{ $matkul['nama_matkul'] }}</td>
+                                <td class="border px-4 py-2">{{ $matkul['sks'] }}</td>
+                                <td class="border px-4 py-2">{{ $matkul['semester'] }}</td>
+                                <td class="border px-4 py-2"></td> {{-- Kosongkan kolom cetak di baris matkul --}}
+                            </tr>
                             @endforeach
+                            @endforeach
+
+                        </tbody>
                     </table>
                     <!-- Tombol Unduh KRS -->
                 <div class="text-right mt-4">
-                    <a id="unduhKRS" href="/mahasiswa/unduhKRS" class="bg-blue-500 text-white px-4 py-2 rounded hidden">
-                        Unduh KRS
+                    <a id="cetakKRS" href="/mahasiswa/cetakKRS" class="bg-blue-500 text-white px-4 py-2 rounded hidden">
+                        Cetak KRS
                 </div>
             </main>
-        </div>
-    </div>
-</body>
+          </div>
+      </div>
+    </body>
 </html>
