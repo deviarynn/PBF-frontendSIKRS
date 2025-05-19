@@ -158,7 +158,7 @@
                           </div>
                       </form>
 
-<div class="fixed bottom-4 left-72">
+                    <div class="fixed bottom-4 left-72">
                     <a href="/admin/dataKRS" class="bg-yellow-700 text-white py-2 px-4 rounded-lg hover:bg-yellow-900 transition duration-200 text-center">Back</a>
                   </div>
                 </main>
