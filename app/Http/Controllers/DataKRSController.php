@@ -29,9 +29,9 @@ class DataKRSController extends Controller
     {
     $mahasiswa = Http::get('http://localhost:8080/mahasiswa')->json();     // ambil semua mahasiswa
     $matkul = Http::get('http://localhost:8080/matkul')->json();     // ambil semua matkul
-    $prodi = Http::get('http://localhost:8080/prodi')->json();
+    // $prodi = Http::get('http://localhost:8080/prodi')->json();
 
-    return view('admin.tambahKRS', compact('mahasiswa', 'matkul', 'prodi'));
+    return view('admin.tambahKRS', compact('mahasiswa', 'matkul'));
     }
 
     /**
