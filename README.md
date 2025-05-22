@@ -144,4 +144,12 @@ $routes->group('api', ['filter' => 'auth'], function ($routes) {
     $routes->get('protected', 'ProtectedController::index');
 });
 ```
+### Install DomPdf jika pgn cetak
+```bash
+$ composer require barryvdh/laravel-dompdf
+```
 
+lalu diatas ditambahkan
+```php
+use Barryvdh\DomPDF\Facade\Pdf; // tambahkan di atas
+```
