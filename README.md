@@ -10,15 +10,11 @@
 ## ⚙️ Tentang Sistem
 ### SISTEM KRS ONLINE POLITEKNIK NEGERI CILACAP
 
-<p>Sistem KRS (Kartu Rencana Studi) Online adalah platform web yang dibangun untuk digitalisasi proses pengisian dan pengelolaan KRS di Politeknik Negeri Cilacap. Sistem ini dirancang menggunakan framework Laravel dan memungkinkan proses yang sebelumnya dilakukan secara manual menjadi lebih cepat, efisien, dan terdokumentasi dengan baik</p>
-<p>Dengan adanya sistem ini:</p><br>
+<p> Sistem Kartu Rencana Studi (KRS) Online Politeknik Negeri Cilacap adalah platform berbasis web yang digunakan untuk pengelolaan KRS secara digital.</p>
 
-Pengelolaan data akademik dilakukan secara terpusat dan terintegrasi.<br>
+<p> Sistem ini memungkinkan admin mendaftarkan mata kuliah secara online, menggantikan prosedur manual. Data akademik seperti program studi dan mata kuliah diintegrasikan dalam sistem, sehingga proses pengisian dan administrasi KRS lebih cepat, akurat, dan efisien.</p>
 
-Mahasiswa dan admin dapat berinteraksi langsung dengan data secara online.<br>
-
-Proses administrasi menjadi paperless dan terdigitalisasi penuh.
-
+<p> Dengan demikian, Politeknik Negeri Cilacap dapat mengelola data akademik dan KRS secara terpusat dan paperless dalam satu sistem terpadu.</p>
 
 #### 🖥️ Fitur Utama
 <p> 1. Admin
@@ -27,14 +23,13 @@ Proses administrasi menjadi paperless dan terdigitalisasi penuh.
 <p> 2. Mahasiswa
 <p>Mahasiswa menggunakan sistem untuk melihat riwayat dan isi data KRS mereka secara online. Mahasiswa dapat mencetak Kartu Rencana Studi (KRS) yang telah diisi oleh administrator/staf akademik. Dengan begitu, mahasiswa dapat mengakses informasi KRS dan mencetak salinannya kapan saja selama periode pengisian, mendukung proses perencanaan studi yang teratur.</p>
 </p>
-
 ## 📁 Persyaratan Instalasi Laravel
 
 Pastikan perangkat Anda sudah terinstal:
 
 - [PHP >= 8.1](https://www.php.net/)
 - [Composer](https://getcomposer.org/)
-- Web server [MySQL](https://www.mysql.com/) atau [XAMPP/Laragon](https://laragon.org/)
+- [MySQL](https://www.mysql.com/) atau [XAMPP/Laragon](https://laragon.org/)
 - (Opsional) Laravel CLI:
 
   ```php
@@ -94,8 +89,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 
 ```
-
-### 🚀 Menyalakan server laravel untuk menjalankan aplikasi
+## 🚀 Menyalakan server laravel untuk menjalankan aplikasi
 
 ```bash
 php artisan serve
@@ -103,6 +97,51 @@ php artisan serve
 
 Aplikasi bisa diakses pada browser dan berjalan di port http://127.0.0.1:8000
 
+## ! Catatan penting
+Frontend ini masih menggunakan isi file routes milik backend yang lama, yaitu
+```App/Config/Routes
+<?php
+use CodeIgniter\Router\RouteCollection;
+/**
+ * @var RouteCollection $routes
+ */
+$routes->get('/', 'Home::index');
+$routes->get('mahasiswa', 'Mahasiswa::index');
+$routes->get('mahasiswa/(:num)', 'Mahasiswa::show/$1');
+$routes->post('mahasiswa', 'Mahasiswa::create');
+$routes->put('mahasiswa/(:num)', 'Mahasiswa::update/$1');
+$routes->delete('mahasiswa/(:num)', 'Mahasiswa::delete/$1');
+$routes->get('dosen', 'Dosen::index');
+$routes->get('dosen/(:num)', 'Dosen::show/$1');
+$routes->post('dosen', 'Dosen::create');
+$routes->put('dosen/(:num)', 'Dosen::update/$1');
+$routes->delete('dosen/(:num)', 'Dosen::delete/$1');
+$routes->get('kelas', 'Kelas::index');
+$routes->get('kelas/(:num)', 'Kelas::show/$1');
+$routes->post('kelas', 'Kelas::create');
+$routes->put('kelas/(:num)', 'Kelas::update/$1');
+$routes->delete('kelas/(:num)', 'Kelas::delete/$1');
+$routes->get('krs', 'Krs::index');
+$routes->get('krs/(:num)', 'Krs::show/$1');
+$routes->post('krs', 'Krs::create');
+$routes->put('krs/(:num)', 'Krs::update/$1');
+$routes->delete('krs/(:num)', 'Krs::delete/$1');
+$routes->get('matkul/', 'Matkul::index');
+$routes->get('matkul/(:num)', 'Matkul::show/$1');
+$routes->post('matkul', 'Matkul::create');
+$routes->put('matkul/(:segment)', 'Matkul::update/$1');
+$routes->delete('matkul/(:num)', 'Matkul::delete/$1');
+$routes->get('prodi', 'Prodi::index');
+$routes->get('prodi/(:segment)', 'Prodi::show/$1');
+$routes->post('prodi', 'Prodi::create');
+$routes->put('prodi/(:segment)', 'Prodi::update/$1');
+$routes->delete('prodi/(:segment)', 'Prodi::delete/$1');
+$routes->get('user', 'User::index');
+$routes->get('user/(:num)', 'User::show/$1');
 
-
+$routes->post('login', 'Auth::login');
+$routes->group('api', ['filter' => 'auth'], function ($routes) {
+    $routes->get('protected', 'ProtectedController::index');
+});
+```
 
