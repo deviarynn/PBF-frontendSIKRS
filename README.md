@@ -88,7 +88,7 @@ php artisan serve
 Aplikasi bisa diakses pada browser dan berjalan di port http://127.0.0.1:8000
 
 ## ! Catatan penting
-Frontend ini masih menggunakan file routes milik backend yang lama, yaitu
+Frontend ini masih menggunakan isi file routes milik backend yang lama, yaitu
 ```App/Config/Routes
 <?php
 use CodeIgniter\Router\RouteCollection;
