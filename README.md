@@ -41,6 +41,12 @@ Pastikan perangkat Anda sudah terinstal:
 ```
 https://github.com/WindyAnggitaPutri/SI_KRS_Database
 ```
+Pilih yang filenya .sql > Buka dan salin semua isinya di sql PhpMyAdmin
+tambahkan query diatas create table
+```
+create database db_krs;
+use db_krs;
+```
 ## INSTALASI PROJECT LARAVEL
 
 Langkah dalam membuat project baru laravel :
