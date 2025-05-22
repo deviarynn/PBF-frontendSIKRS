@@ -10,21 +10,21 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'user'; // Sesuaikan dengan nama tabel di database
+    protected $table = 'user'; // Pastikan sesuai nama tabel di DB
 
     protected $fillable = [
         'username', 
         'password', 
-        'status' // Bisa 'admin' atau 'mahasiswa'
+        'status'
     ];
 
     protected $hidden = [
-        'password', // Supaya password tidak bisa dilihat langsung
+        'password',
     ];
 
-    // Mutator untuk otomatis hash password saat disimpan
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
+    // HAPUS atau KOMENTARI mutator ini!!
+    // public function setPasswordAttribute($value)
+    // {
+    //     $this->attributes['password'] = bcrypt($value);
+    // }
 }

@@ -60,7 +60,7 @@ class DataMatkulController extends Controller
         ]);
 
         if ($response->successful()) {
-            return redirect()->route('admin.dataMatkul')->with('success', 'Data berhasil disimpan');
+            return redirect()->route('admin.dataMatkul')->with('success', 'Data Matkul berhasil disimpan');
         } else {
             return back()->withErrors('Gagal menyimpan data');
         }
@@ -102,7 +102,7 @@ class DataMatkulController extends Controller
 ]);
 
     if ($response->successful()) {
-        return redirect()->route('admin.dataMatkul')->with('success', 'Data berhasil diupdate!');
+        return redirect()->route('admin.dataMatkul')->with('success', 'Data Matkul berhasil diupdate!');
     } else {
         return back()->with('error', 'Gagal update data.');
     }
@@ -118,7 +118,7 @@ class DataMatkulController extends Controller
         $response = Http::delete("http://localhost:8080/matkul/{$kode_matkul}");
 
         if ($response->successful()) {
-            return redirect('/admin/dataMatkul')->with('success', 'Kelas berhasil dihapus');
+            return redirect('/admin/dataMatkul')->with('success', 'Matkul berhasil dihapus');
         } else {
             return back()->with('error', 'Gagal menghapus mata kuliah');
         }

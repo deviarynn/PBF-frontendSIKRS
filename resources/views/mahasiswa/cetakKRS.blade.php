@@ -126,7 +126,7 @@
             @endphp
             @foreach ($krsData['matkuls'] as $index => $matkul)
                 @php
-                    $totalSks += $matkul['sks'];
+                    $totalSks += $matkul['sk'];s
                 @endphp
                 <tr>
                     <td>{{ $index + 1 }}</td>

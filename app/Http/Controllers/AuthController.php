@@ -4,65 +4,55 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 
 class AuthController extends Controller
 {
-    // Menampilkan halaman login admin
-    public function showAdminLoginForm()
+    // Tampilkan halaman login
+    public function showLoginForm()
     {
-        return view('admin.login');
+        return view('auth.login');
     }
 
-    // Menampilkan halaman login mahasiswa
-    public function showMahasiswaLoginForm()
+    // Proses login
+    public function login(Request $request)
     {
-        return view('mahasiswa.login');
+        // Validasi input
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        // Ambil user dari DB
+        $user = User::where('username', $credentials['username'])->first();
+
+        // Cek user ditemukan
+        if (!$user) {
+            return back()->withErrors(['username' => 'Username tidak ditemukan']);
+        }
+
+        if ($credentials['password'] !== $user->password) {
+            return back()->withErrors(['password' => 'Password salah']);
+        }
+
+        // Simpan user ke session
+        Session::put('user', $user);
+
+        // Redirect sesuai status
+        if ($user->status === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->status === 'mahasiswa') {
+            return redirect()->route('mahasiswa.dashboard');
+        } else {
+            return redirect()->route('login')->withErrors(['status' => 'Status tidak dikenal']);
+        }
     }
 
-    // Proses login admin
-    public function loginAdmin(Request $request)
-{
-    $credentials = $request->validate([
-        'username' => 'required',
-        'password' => 'required',
-    ]);
-
-    // Cari user berdasarkan username
-    $user = User::where('username', $credentials['username'])->where('status', 'admin')->first();
-
-    if (!$user) {
-        return back()->withErrors(['username' => 'User tidak ditemukan']);
+    // Logout
+    public function logout()
+    {
+        Session::forget('user');
+        return redirect()->route('login')->with('message', 'Logout berhasil');
     }
-
-    // Cek apakah password sama tanpa hash
-    if ($user->password === $credentials['password']) {
-        Auth::login($user);
-        return redirect()->route('admin.dashboard');
-    }
-
-return redirect()->back()->with('error', 'Username atau password salah.');
-}
-
-public function loginMahasiswa(Request $request)
-{
-    $credentials = $request->validate([
-        'username' => 'required',
-        'password' => 'required',
-    ]);
-
-    // Cari user berdasarkan username
-    $user = User::where('username', $credentials['username'])->where('status', 'mahasiswa')->first();
-
-    if (!$user) {
-        return back()->withErrors(['username' => 'User tidak ditemukan']);
-    }
-
-    // Cek apakah password sama tanpa hash
-    if ($user->password === $credentials['password']) {
-        Auth::login($user);
-        return redirect()->route('mahasiswa.dashboard');
-    }
-return redirect()->back()->with('error', 'Username atau password salah.');
-}
 }

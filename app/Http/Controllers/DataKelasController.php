@@ -33,24 +33,24 @@ class DataKelasController extends Controller
     // DataKelasController (di frontend project)
     public function store(Request $request)
     {
-        // $request->validate([
-        // 'nama_kelas' => 'required|string|max:10',
-        // ], [
-        //     'nama_kelas.required' => 'Nama Kelas wajib diisi.',
-        //     'nama_kelas.max' => 'Tidak boleh lebih dari 10 karakter.',
-        // ]);
-        // $existingKelas = DB::table('kelas')->where('nama_kelas', $request->nama_kelas)->first();
+        $request->validate([
+        'nama_kelas' => 'required|string|max:10',
+        ], [
+            'nama_kelas.required' => 'Nama Kelas wajib diisi.',
+            'nama_kelas.max' => 'Tidak boleh lebih dari 10 karakter.',
+        ]);
+        $existingKelas = DB::table('kelas')->where('nama_kelas', $request->nama_kelas)->first();
 
-        // if ($existingKelas) {
-        //     return back()->withErrors(['id_kelas' => 'Data Nama Kelas sudah ada .'])->withInput();
-        // }
+        if ($existingKelas) {
+            return back()->withErrors(['nama_kelas' => 'Data Nama Kelas sudah ada .'])->withInput();
+        }
 
         $response = Http::asForm()->post('http://localhost:8080/kelas', [
             'nama_kelas' => $request->nama_kelas,
         ]);
 
         if ($response->successful()) {
-            return redirect()->route('admin.dataKelas')->with('success', 'Data berhasil disimpan!');
+            return redirect()->route('admin.dataKelas')->with('success', 'Data Kelas berhasil disimpan!');
         } elseif ($response->status() === 409) {
             return back()->withErrors(['nama_kelas' => 'Nama kelas sudah ada.'])->withInput();
         } else {
@@ -96,7 +96,7 @@ public function update(Request $request, $id_kelas)
     ]);
 
     if ($response->successful()) {
-        return redirect('/admin/dataKelas')->with('success', 'Data berhasil diubah!');
+        return redirect('/admin/dataKelas')->with('success', 'Data Kelas berhasil diubah!');
     } else {
         return back()->with('error', 'Gagal mengubah data.');
     }

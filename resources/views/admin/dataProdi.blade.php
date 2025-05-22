@@ -190,50 +190,73 @@
               </tbody>
             </table>
             <script>
-              function confirmDelete(kode_prodi) {
-                Swal.fire({
-              title: 'Yakin ingin menghapus?',
-              text: "Data Prodi akan dihapus secara permanen!",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#d33',
-              cancelButtonColor: '#3085d6',
-              confirmButtonText: 'Ya, hapus!',
-              cancelButtonText: 'Batal',
-              width: '350px', // Ukuran lebar popup
-              customClass: {
-                popup: 'text-sm',            // Semua font popup kecil
-                title: 'text-base font-semibold', // Judul sedikit lebih besar & tebal
-                htmlContainer: 'text-sm',    // Isi teks biasa
-                confirmButton: 'text-sm px-3 py-1',
-                cancelButton: 'text-sm px-3 py-1'
-              }
-            })
-            .then((result) => {
-                  if (result.isConfirmed) {
-                    // Buat dan submit form secara dinamis
-                    const form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = `/admin/hapusProdi/${kode_prodi}`;
+function confirmDelete(kode_prodi) {
+  Swal.fire({
+    title: 'Yakin ingin menghapus?',
+    text: "Data Prodi akan dihapus secara permanen!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Ya, hapus!',
+    cancelButtonText: 'Batal',
+    width: '350px',
+    customClass: {
+      popup: 'text-sm',
+      title: 'text-base font-semibold',
+      htmlContainer: 'text-sm',
+      confirmButton: 'text-sm px-3 py-1',
+      cancelButton: 'text-sm px-3 py-1'
+    }
+  })
+  .then((result) => {
+    if (result.isConfirmed) {
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = `/admin/hapusProdi/${kode_prodi}`;
 
-                    const csrf = document.createElement('input');
-                    csrf.type = 'hidden';
-                    csrf.name = '_token';
-                    csrf.value = '{{ csrf_token() }}';
+      const csrf = document.createElement('input');
+      csrf.type = 'hidden';
+      csrf.name = '_token';
+      csrf.value = '{{ csrf_token() }}';
 
-                    const method = document.createElement('input');
-                    method.type = 'hidden';
-                    method.name = '_method';
-                    method.value = 'DELETE';
+      const method = document.createElement('input');
+      method.type = 'hidden';
+      method.name = '_method';
+      method.value = 'DELETE';
 
-                    form.appendChild(csrf);
-                    form.appendChild(method);
-                    document.body.appendChild(form);
-                    form.submit();
-                  }
-                });
-              }
-            </script>
+      form.appendChild(csrf);
+      form.appendChild(method);
+      document.body.appendChild(form);
+      form.submit();
+    }
+  });
+}
+</script>
+@if(session('success'))
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  Swal.fire({
+    title: 'Berhasil!',
+    text: {!! json_encode(session('success')) !!},
+    icon: 'success',
+    confirmButtonText: 'OK',
+    timer: 2000,
+    width: '350px',
+    showConfirmButton: false,
+    customClass: {
+      popup: 'text-sm',
+      title: 'text-base font-semibold',
+      htmlContainer: 'text-sm',
+      confirmButton: 'text-sm px-3 py-1',
+      cancelButton: 'text-sm px-3 py-1' // ditambahkan agar sama dengan versi hapus
+    }
+  });
+});
+</script>
+@endif
+
+
           </div>
         </div>
       </main>

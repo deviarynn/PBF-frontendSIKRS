@@ -30,41 +30,24 @@ Route::get('/', function () {
 })->name('welcome');
 
 
-// Role admin
-// Route::get('/admin/login', function () {
-//     return view('admin.login');
-// })->name('admin.login');
 
-Route::get('/admin/login', [AuthController::class, 'showAdminLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AuthController::class, 'loginAdmin']);
 
-Route::get('/mahasiswa/login', [AuthController::class, 'showMahasiswaLoginForm'])->name('mahasiswa.login');
-Route::post('/mahasiswa/login', [AuthController::class, 'loginMahasiswa']);
 
-// Route::post('/admin/login', [AuthController::class, 'loginAdmin'])->name('admin.login');
-// Route::post('/mahasiswa/login', [AuthController::class, 'loginMahasiswa'])->name('mahasiswa.login');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Route ke halaman login Admin
-// Route::get('/admin/login', function () {
-//     return view('admin.login'); // Sesuaikan dengan path blade login admin
-// })->name('admin.login');
-
-// Route ke halaman login Mahasiswa
-// Route::get('/mahasiswa/login', function () {
-//     return view('mahasiswa.login'); // Sesuaikan dengan path blade login mahasiswa
-// })->name('mahasiswa.login');
-
+// Contoh dashboard
 Route::get('/admin/dashboard', [DashboardAdmin::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/mahasiswa/dashboard', [DashboardMahasiswa::class, 'dashboard'])->name('mahasiswa.dashboard');
+;
 
-// Route::get('/admin/dashboard', function () {
-//     return view('admin.dashboard');
-// })->name('admin.dashboard');
+Route::get('/mahasiswa/dashboard', function () {
+    return view('mahasiswa.dashboard');
+})->name('mahasiswa.dashboard');
 
-// data mahasiswa
-// Route::get('/admin/dataMhs', function () {
-//     return view('admin.dataMhs');
-// })->name('admin.dataMhs');
+
+
+
 
 Route::get('/admin/dataMhs', [DataMahasiswaController::class, 'index']);
 

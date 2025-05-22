@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SiKRS - Tambah Data Prodi</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <script>
     let isDropdownOpen = false;
 
@@ -163,6 +165,30 @@
                                 <button
                                     class="bg-green-700 text-white py-2 px-4 rounded-lg hover:bg-green-900 transition duration-200">Simpan</button>
                             </div>
+                            
+                            @if(session('success'))
+                            <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                              Swal.fire({
+                                title: 'Berhasil!',
+                                text: {!! json_encode(session('success')) !!},
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                                timer: 2000,
+                                width: '350px',
+                                showConfirmButton: false,
+                                customClass: {
+                                  popup: 'text-sm',
+                                  title: 'text-base font-semibold',
+                                  htmlContainer: 'text-sm',
+                                  confirmButton: 'text-sm px-3 py-1',
+                                  cancelButton: 'text-sm px-3 py-1' // ditambahkan agar sama dengan versi hapus
+                                }
+                              });
+                            });
+                            </script>
+                            @endif
+
 
                         </div>
                     </div>
@@ -174,4 +200,5 @@
             </div>
         </div>
     </body>
+
     </html>

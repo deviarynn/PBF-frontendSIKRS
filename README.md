@@ -10,11 +10,15 @@
 ## ⚙️ Tentang Sistem
 ### SISTEM KRS ONLINE POLITEKNIK NEGERI CILACAP
 
-<p> Sistem Kartu Rencana Studi (KRS) Online Politeknik Negeri Cilacap adalah platform berbasis web yang digunakan untuk pengelolaan KRS secara digital.</p>
+<p>Sistem KRS (Kartu Rencana Studi) Online adalah platform web yang dibangun untuk digitalisasi proses pengisian dan pengelolaan KRS di Politeknik Negeri Cilacap. Sistem ini dirancang menggunakan framework Laravel dan memungkinkan proses yang sebelumnya dilakukan secara manual menjadi lebih cepat, efisien, dan terdokumentasi dengan baik</p>
+<p>Dengan adanya sistem ini:</p><br>
 
-<p> Sistem ini memungkinkan admin mendaftarkan mata kuliah secara online, menggantikan prosedur manual. Data akademik seperti program studi dan mata kuliah diintegrasikan dalam sistem, sehingga proses pengisian dan administrasi KRS lebih cepat, akurat, dan efisien.</p>
+Pengelolaan data akademik dilakukan secara terpusat dan terintegrasi.<br>
 
-<p> Dengan demikian, Politeknik Negeri Cilacap dapat mengelola data akademik dan KRS secara terpusat dan paperless dalam satu sistem terpadu.</p>
+Mahasiswa dan admin dapat berinteraksi langsung dengan data secara online.<br>
+
+Proses administrasi menjadi paperless dan terdigitalisasi penuh.
+
 
 #### 🖥️ Fitur Utama
 <p> 1. Admin
@@ -23,13 +27,14 @@
 <p> 2. Mahasiswa
 <p>Mahasiswa menggunakan sistem untuk melihat riwayat dan isi data KRS mereka secara online. Mahasiswa dapat mencetak Kartu Rencana Studi (KRS) yang telah diisi oleh administrator/staf akademik. Dengan begitu, mahasiswa dapat mengakses informasi KRS dan mencetak salinannya kapan saja selama periode pengisian, mendukung proses perencanaan studi yang teratur.</p>
 </p>
+
 ## 📁 Persyaratan Instalasi Laravel
 
 Pastikan perangkat Anda sudah terinstal:
 
 - [PHP >= 8.1](https://www.php.net/)
 - [Composer](https://getcomposer.org/)
-- [MySQL](https://www.mysql.com/) atau [XAMPP/Laragon](https://laragon.org/)
+- Web server [MySQL](https://www.mysql.com/) atau [XAMPP/Laragon](https://laragon.org/)
 - (Opsional) Laravel CLI:
 
   ```php
@@ -69,7 +74,8 @@ DB_USERNAME=root
 DB_PASSWORD=
 
 ```
-## 🚀 Menyalakan server laravel untuk menjalankan aplikasi
+
+### 🚀 Menyalakan server laravel untuk menjalankan aplikasi
 
 ```bash
 php artisan serve
@@ -77,6 +83,10 @@ php artisan serve
 
 Aplikasi bisa diakses pada browser dan berjalan di port http://127.0.0.1:8000
 
+### 5. Jalankan Migrasi(opsional)
 
+```bash
+php artisan migrate
+```
 
 

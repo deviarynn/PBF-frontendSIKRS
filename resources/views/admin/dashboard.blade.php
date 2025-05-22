@@ -149,7 +149,7 @@
             </div>
 
             <!-- Data Kelas -->
-            <div class="bg-white hover:bg-purple-100 transition transform hover:-translate-y-1 duration-300 w-full p-6 shadow-lg rounded row-span-1">
+            <div class="bg-white hover:bg-purple-200 transition transform hover:-translate-y-1 duration-300 w-full p-6 shadow-lg rounded row-span-1">
                 <p class="font-semibold text-gray-700">Data Kelas</p>
                 <p class="text-4xl mb-2">🏠</p>
                 <p class="text-purple-700 text-xl font-bold">{{ $jumlahKelas }}</p>
@@ -157,7 +157,7 @@
             </div>
 
             <!-- Data KRS (taller card) -->
-            <div class="bg-white hover:bg-pink-100 transition transform hover:-translate-y-1 duration-300 w-full p-6 shadow-lg rounded row-span-2">
+            <div class="bg-white hover:bg-pink-200 transition transform hover:-translate-y-1 duration-300 w-full p-6 shadow-lg rounded row-span-2">
                 <p class="font-semibold text-gray-700">Data KRS</p>
                 <p class="text-4xl mb-2">📝</p>
                 <p class="text-pink-700 text-2xl font-bold">{{ $jumlahKrs }}</p>

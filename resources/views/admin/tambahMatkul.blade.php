@@ -160,6 +160,28 @@
                                 <button class="bg-green-700 text-white py-2 px-4 rounded-lg hover:bg-green-900 transition duration-200">Simpan</button>
                             </div>
                         </form>
+                        @if(session('success'))
+                      <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                          title: 'Berhasil!',
+                          text: {!! json_encode(session('success')) !!},
+                          icon: 'success',
+                          confirmButtonText: 'OK',
+                          timer: 2000,
+                          width: '350px',
+                          showConfirmButton: false,
+                          customClass: {
+                            popup: 'text-sm',
+                            title: 'text-base font-semibold',
+                            htmlContainer: 'text-sm',
+                            confirmButton: 'text-sm px-3 py-1',
+                            cancelButton: 'text-sm px-3 py-1' // ditambahkan agar sama dengan versi hapus
+                          }
+                        });
+                      });
+                      </script>
+                      @endif
                         </div>
                     </div>
                 </div>

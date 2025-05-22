@@ -144,7 +144,7 @@
         <div class="mt-6 bg-white p-6 rounded-lg shadow-md max-w-5xl mx-auto">
           <div class="flex justify-between items-center mb-4">
             <a href="/admin/tambahMhs" class="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded transition">Tambah</a>
-            <input type="text" id="searchInput" placeholder="Cari Nama Mahasiswa..." class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-cyan-400">
+            <input type="text" id="searchInput" placeholder="Cari NPM / data lainnya.." class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring focus:border-cyan-400">
         </div>
 
           <div class="overflow-x-auto">
@@ -234,6 +234,28 @@
                 });
               }
             </script>
+            @if(session('success'))
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              Swal.fire({
+                title: 'Berhasil!',
+                text: {!! json_encode(session('success')) !!},
+                icon: 'success',
+                confirmButtonText: 'OK',
+                timer: 2000,
+                width: '350px',
+                showConfirmButton: false,
+                customClass: {
+                  popup: 'text-sm',
+                  title: 'text-base font-semibold',
+                  htmlContainer: 'text-sm',
+                  confirmButton: 'text-sm px-3 py-1',
+                  cancelButton: 'text-sm px-3 py-1' // ditambahkan agar sama dengan versi hapus
+                }
+              });
+            });
+            </script>
+            @endif
 
             </div>
           </div>

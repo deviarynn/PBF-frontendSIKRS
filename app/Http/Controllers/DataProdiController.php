@@ -48,7 +48,7 @@ class DataProdiController extends Controller {
         ]);
         
         if ($response->successful()) {
-            return redirect()->route('admin.dataProdi')->with('success', 'Data berhasil disimpan!');
+            return redirect()->route('admin.dataProdi')->with('success', 'Data Prodi berhasil disimpan!');
         } else {
             return back()->withErrors('Gagal menyimpan data');
         }
@@ -77,7 +77,7 @@ class DataProdiController extends Controller {
         ]);
 
         if ($response->successful()) {
-            return redirect('/admin/dataProdi')->with('success', 'Data berhasil diubah!');
+            return redirect('/admin/dataProdi')->with('success', 'Data Prodi berhasil diubah!');
         } else {
             return back()->with('error', 'Gagal mengubah data.');
         }

@@ -51,8 +51,8 @@
         <!-- Sidebar -->
         <aside id="sidebar" class="w-64 bg-gray-700 text-white px-6 pt-5 pb-24 fixed h-full shadow-xl flex flex-col">
             <div class="flex items-center justify-center mb-6">
-              <img src="{{ asset('image/krs.png') }}" alt="Logo SiKRS" class="h-8 mr-2">
-              <h2 class="text-2xl font-bold">SiKRS</h2>
+            <img src="{{ asset('image/krs.png') }}" alt="Logo SiKRS" class="h-8 mr-2">
+            <h2 class="text-2xl font-bold tracking-wide">SiKRS</h2>
             </div>
             <hr class="border-gray-600 mb-4">
           
@@ -96,10 +96,10 @@
         <!-- Main Content -->
         <div class="flex-1 ml-64">
             <!-- Navbar -->
-            <nav class="bg-cyan-700 text-white p-4 flex justify-between items-center shadow-md w-full">
+                <nav class="bg-cyan-700 text-white px-6 py-4 flex justify-between items-center shadow-md sticky top-0 z-10">
                 <div class="flex items-center space-x-4">
                     <span id="toggleSidebar" class="text-2xl cursor-pointer">&#9776;</span>
-                    <h1 class="text-lg font-bold">Sistem Manajemen KRS Online</h1>
+                    <h1 class="text-lg font-bold tracking-wide">Sistem Manajemen KRS Online</h1>
                 </div>
                 <div class="flex items-center space-x-3">
                     <img src="{{ asset('image/mhs.png') }}" alt="👨‍💼" class="h-8 w-8 rounded-full">
@@ -109,7 +109,7 @@
 
             <main class="p-6">
                 <!-- Selamat Datang Admin -->
-                <div class="bg-cyan-700 text-white p-3 text-center rounded mb-4 shadow-md w-full">
+                <div class="bg-cyan-800 text-white p-3 text-center rounded mb-4 shadow-md w-full">
                     <h2 class="text-2xl font-bold">KRS MAHASISWA POLITEKNIK NEGERI CILACAP</h2>
                 </div>
                 <hr style="background-color: rgb(136, 151, 154); height: 1px; border: none;"><br>

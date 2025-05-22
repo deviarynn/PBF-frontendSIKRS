@@ -48,14 +48,18 @@
       <h2 class="text-2xl font-bold text-gray-800 tracking-wide">SiKRS</h2>
     </div>
 
-        @if(session('error'))
-    <div class="mb-4 p-3 text-red-800 bg-red-100 border border-red-400 rounded-lg text-sm font-medium animate-fadeInUp">
-        {{ session('error') }}
-    </div>
+    @if($errors->any())
+        <div style="color:red;">
+            <ul>
+                @foreach($errors->all() as $err)
+                    <li>{{ $err }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 
     <!-- Form Login -->
-    <form action="{{ route('admin.login') }}" method="POST" class="space-y-5">
+      <form action="{{ route('login.process') }}" method="POST">
       @csrf
       <div>
         <label class="block font-semibold text-gray-700 mb-1">Username</label>

@@ -29,8 +29,7 @@ class DataKRSController extends Controller
     {
     $mahasiswa = Http::get('http://localhost:8080/mahasiswa')->json();     // ambil semua mahasiswa
     $matkul = Http::get('http://localhost:8080/matkul')->json();     // ambil semua matkul
-    // $prodi = Http::get('http://localhost:8080/prodi')->json();
-
+    
     return view('admin.tambahKRS', compact('mahasiswa', 'matkul'));
     }
 
@@ -67,7 +66,7 @@ class DataKRSController extends Controller
         ]);
         
         if ($response->successful()) {
-            return redirect()->route('admin.dataKRS')->with('success', 'Data berhasil disimpan!');
+            return redirect()->route('admin.dataKRS')->with('success', 'Data KRS berhasil disimpan!');
         } else {
             return back()->withErrors('Gagal menyimpan data');
         }
