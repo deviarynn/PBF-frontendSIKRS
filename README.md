@@ -37,6 +37,10 @@ Pastikan perangkat Anda sudah terinstal:
   composer global require laravel/installer
   ```
 
+## Download database
+```
+https://github.com/WindyAnggitaPutri/SI_KRS_Database
+```
 ## INSTALASI PROJECT LARAVEL
 
 Langkah dalam membuat project baru laravel :
