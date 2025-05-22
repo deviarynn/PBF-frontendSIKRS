@@ -42,7 +42,27 @@ Pastikan perangkat Anda sudah terinstal:
   composer global require laravel/installer
   ```
 
+## Download database
+```
+https://github.com/WindyAnggitaPutri/SI_KRS_Database
+```
+Pilih yang filenya .sql > Buka dan salin semua isinya di sql PhpMyAdmin
+tambahkan query diatas create table
+```
+create database db_krs;
+use db_krs;
+```
 ## INSTALASI PROJECT LARAVEL
+
+Langkah dalam membuat project baru laravel :
+1.	Ketikan perintah terminal di bash commad (composer create-project laravel/laravel nama-proyek). Ini adalah perintah untuk membuat project Laravel baru sekaligus installasi composernya.
+Contoh jika ingin membuat project seperti punya saya yaitu (composer create-project laravel/laravel SiKRS).
+Setelah selesai, akan terbentuk folder projekKRS/ yang berisi struktur Laravel.
+2.	Masuk ke directory proyek dengan perintah cd namafile
+3.	Lalu jalankan server Laravel dengan perintah php artisan serve di gitbash
+Nanti akan muncul http://127.0.0.1:8000 yang artinya server laravel berjalan di port 8000.
+Atau jika kita menjalankan project laravel milik orang lain cukup git clone dari github , ketik di cmd git clone link_github_tersebut.git. Lalu masih sama caranya seperti tadi, masuk dulu ke directory filenya, kita buka di vscode. Kemudian kita install composer terlebih dahulu dengan perintah ”composer install” di terminal/jika merasa sudah install tapi ragu cek saja dengan composer -v.
+
 ### 1. Clone Repository 
 ```
 git clone https://github.com/deviarynn/PBF-frontendSIKRS
@@ -83,10 +103,6 @@ php artisan serve
 
 Aplikasi bisa diakses pada browser dan berjalan di port http://127.0.0.1:8000
 
-### 5. Jalankan Migrasi(opsional)
 
-```bash
-php artisan migrate
-```
 
 
