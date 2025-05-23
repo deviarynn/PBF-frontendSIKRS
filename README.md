@@ -21,7 +21,7 @@
 <p>Administrator (staff akademik) dapat mengelola seluruh data akademik melalui operasi CRUD (create, read, update, delete). Fitur ini mencakup pengelolaan data mahasiswa, program studi (prodi), mata kuliah, kelas perkuliahan, dan data KRS mahasiswa. Misalnya, admin dapat menambah, mengubah, atau menghapus informasi mahasiswa, serta menetapkan kelas dan KRS untuk tiap semester, seperti dijelaskan dalam studi KRS online di institusi lain</p>
 </p>
 <p> 2. Mahasiswa
-<p>Mahasiswa menggunakan sistem untuk melihat riwayat dan isi data KRS mereka secara online. Mahasiswa dapat mencetak Kartu Rencana Studi (KRS) yang telah diisi oleh administrator/staf akademik. Dengan begitu, mahasiswa dapat mengakses informasi KRS dan mencetak salinannya kapan saja selama periode pengisian, mendukung proses perencanaan studi yang teratur.</p>
+<p>Mahasiswa menggunakan sistem untuk melihat riwayat dan isi data KRS mereka secara online. Mahasiswa dapat mencetak Kartu Rencana Studi (KRS) yang telah diisi oleh administrator/staf akademik.</p>
 </p>
 ## 📁 Persyaratan Instalasi Laravel
 
@@ -47,6 +47,108 @@ tambahkan query diatas create table
 create database db_krs;
 use db_krs;
 ```
+
+Clone github backend di dalam folder www
+```
+git clone https://github.com/kristiandimasadiwicaksono/SI-KRS-Backend.git
+```
+Install composer (jika belum ada)
+```bash
+composer install
+```
+Nyalakan server backend
+```bash
+php spark serve
+```
+
+Untuk mengetahui apakah endpoint backend berhasil atau tidak, bisa dicek melalui postman
+Kelas:
+```
+GET → http://localhost:8080/kelas / http://localhost:8080/kelas/{id}
+POST → http://localhost:8080/kelas
+PUT → http://localhost:8080/kelas/{id}
+DELETE → http://localhost:8080/kelas/{id}
+```
+Matkul:
+```
+GET → http://localhost:8080/matkul / http://localhost:8080/matkul/{id}
+POST → http://localhost:8080/matkul
+PUT → http://localhost:8080/matkul/{id}
+DELETE → http://localhost:8080/matkul/{id}
+```
+Prodi:
+GET → http://localhost:8080/prodi / http://localhost:8080/prodi/{id}
+POST → http://localhost:8080/prodi
+PUT → http://localhost:8080/prodi/{id}
+DELETE → http://localhost:8080/prodi/{id}
+
+Mahasiswa:
+```
+GET → http://localhost:8080/mahasiswa / http://localhost:8080/mahasiswa/{id}
+POST → http://localhost:8080/mahasiswa
+PUT → http://localhost:8080/mahasiswa/{id}
+DELETE → http://localhost:8080/mahasiswa/{id}
+```
+KRS:
+```
+GET → http://localhost:8080/krs / http://localhost:8080/krs/{id}
+POST → http://localhost:8080/krs
+PUT → http://localhost:8080/krs/{id}
+DELETE → http://localhost:8080/krs/{id}
+```
+User:
+```
+GET → http://localhost:8080/user / http://localhost:8080/user/{id}
+```
+
+## ! Catatan penting
+Frontend ini masih menggunakan isi file routes milik backend yang lama, yaitu
+```App/Config/Routes
+<?php
+use CodeIgniter\Router\RouteCollection;
+/**
+ * @var RouteCollection $routes
+ */
+$routes->get('/', 'Home::index');
+$routes->get('mahasiswa', 'Mahasiswa::index');
+$routes->get('mahasiswa/(:num)', 'Mahasiswa::show/$1');
+$routes->post('mahasiswa', 'Mahasiswa::create');
+$routes->put('mahasiswa/(:num)', 'Mahasiswa::update/$1');
+$routes->delete('mahasiswa/(:num)', 'Mahasiswa::delete/$1');
+$routes->get('dosen', 'Dosen::index');
+$routes->get('dosen/(:num)', 'Dosen::show/$1');
+$routes->post('dosen', 'Dosen::create');
+$routes->put('dosen/(:num)', 'Dosen::update/$1');
+$routes->delete('dosen/(:num)', 'Dosen::delete/$1');
+$routes->get('kelas', 'Kelas::index');
+$routes->get('kelas/(:num)', 'Kelas::show/$1');
+$routes->post('kelas', 'Kelas::create');
+$routes->put('kelas/(:num)', 'Kelas::update/$1');
+$routes->delete('kelas/(:num)', 'Kelas::delete/$1');
+$routes->get('krs', 'Krs::index');
+$routes->get('krs/(:num)', 'Krs::show/$1');
+$routes->post('krs', 'Krs::create');
+$routes->put('krs/(:num)', 'Krs::update/$1');
+$routes->delete('krs/(:num)', 'Krs::delete/$1');
+$routes->get('matkul/', 'Matkul::index');
+$routes->get('matkul/(:num)', 'Matkul::show/$1');
+$routes->post('matkul', 'Matkul::create');
+$routes->put('matkul/(:segment)', 'Matkul::update/$1');
+$routes->delete('matkul/(:num)', 'Matkul::delete/$1');
+$routes->get('prodi', 'Prodi::index');
+$routes->get('prodi/(:segment)', 'Prodi::show/$1');
+$routes->post('prodi', 'Prodi::create');
+$routes->put('prodi/(:segment)', 'Prodi::update/$1');
+$routes->delete('prodi/(:segment)', 'Prodi::delete/$1');
+$routes->get('user', 'User::index');
+$routes->get('user/(:num)', 'User::show/$1');
+
+$routes->post('login', 'Auth::login');
+$routes->group('api', ['filter' => 'auth'], function ($routes) {
+    $routes->get('protected', 'ProtectedController::index');
+});
+```
+
 ## INSTALASI PROJECT LARAVEL
 
 Langkah dalam membuat project baru laravel :
@@ -97,53 +199,6 @@ php artisan serve
 
 Aplikasi bisa diakses pada browser dan berjalan di port http://127.0.0.1:8000
 
-## ! Catatan penting
-Frontend ini masih menggunakan isi file routes milik backend yang lama, yaitu
-```App/Config/Routes
-<?php
-use CodeIgniter\Router\RouteCollection;
-/**
- * @var RouteCollection $routes
- */
-$routes->get('/', 'Home::index');
-$routes->get('mahasiswa', 'Mahasiswa::index');
-$routes->get('mahasiswa/(:num)', 'Mahasiswa::show/$1');
-$routes->post('mahasiswa', 'Mahasiswa::create');
-$routes->put('mahasiswa/(:num)', 'Mahasiswa::update/$1');
-$routes->delete('mahasiswa/(:num)', 'Mahasiswa::delete/$1');
-$routes->get('dosen', 'Dosen::index');
-$routes->get('dosen/(:num)', 'Dosen::show/$1');
-$routes->post('dosen', 'Dosen::create');
-$routes->put('dosen/(:num)', 'Dosen::update/$1');
-$routes->delete('dosen/(:num)', 'Dosen::delete/$1');
-$routes->get('kelas', 'Kelas::index');
-$routes->get('kelas/(:num)', 'Kelas::show/$1');
-$routes->post('kelas', 'Kelas::create');
-$routes->put('kelas/(:num)', 'Kelas::update/$1');
-$routes->delete('kelas/(:num)', 'Kelas::delete/$1');
-$routes->get('krs', 'Krs::index');
-$routes->get('krs/(:num)', 'Krs::show/$1');
-$routes->post('krs', 'Krs::create');
-$routes->put('krs/(:num)', 'Krs::update/$1');
-$routes->delete('krs/(:num)', 'Krs::delete/$1');
-$routes->get('matkul/', 'Matkul::index');
-$routes->get('matkul/(:num)', 'Matkul::show/$1');
-$routes->post('matkul', 'Matkul::create');
-$routes->put('matkul/(:segment)', 'Matkul::update/$1');
-$routes->delete('matkul/(:num)', 'Matkul::delete/$1');
-$routes->get('prodi', 'Prodi::index');
-$routes->get('prodi/(:segment)', 'Prodi::show/$1');
-$routes->post('prodi', 'Prodi::create');
-$routes->put('prodi/(:segment)', 'Prodi::update/$1');
-$routes->delete('prodi/(:segment)', 'Prodi::delete/$1');
-$routes->get('user', 'User::index');
-$routes->get('user/(:num)', 'User::show/$1');
-
-$routes->post('login', 'Auth::login');
-$routes->group('api', ['filter' => 'auth'], function ($routes) {
-    $routes->get('protected', 'ProtectedController::index');
-});
-```
 ### Install DomPdf jika pgn cetak
 ```bash
 $ composer require barryvdh/laravel-dompdf
