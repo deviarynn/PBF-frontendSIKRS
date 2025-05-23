@@ -148,6 +148,7 @@ $routes->group('api', ['filter' => 'auth'], function ($routes) {
     $routes->get('protected', 'ProtectedController::index');
 });
 ```
+M<b>aka dari itu ganti isi file Routes.php milik backend yang sudah di clone tadi, dengan kode diatas.</b>
 
 ## INSTALASI PROJECT LARAVEL
 
