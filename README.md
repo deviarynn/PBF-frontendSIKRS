@@ -192,12 +192,11 @@ Buka file `.env` dan ubah konfigurasi database.
 ```php
 .env
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
 DB_DATABASE=db_krs
-DB_USERNAME=root
-DB_PASSWORD=
+
+APP_NAME=Laravel
+APP_URL=http://localhost
+SESSION_DRIVER=file
 
 ```
 ## 🚀 Menyalakan server laravel untuk menjalankan aplikasi
