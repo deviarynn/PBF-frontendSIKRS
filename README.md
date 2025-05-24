@@ -60,6 +60,7 @@ Nyalakan server backend
 ```bash
 php spark serve
 ```
+Pentingnya menyalakan kedua server yaitu backend dan frontend, karena jika salah satu tidak bisa. Misal jika kurang menyalakan server backend, maka fitur crud tidak berjalan. Dan jika kita tidak menyalakan server frontend, maka tidak dapat membuka project laravel ini.
 
 Untuk mengetahui apakah endpoint backend berhasil atau tidak, bisa dicek melalui postman
 ```
